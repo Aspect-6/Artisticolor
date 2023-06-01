@@ -23,6 +23,39 @@ body {
     right: 20px;
 }
 
+.sub-menu {
+    padding: 20px;
+}
+.sub-menu-wrap {
+    position: absolute;
+    display: none;
+    top: 79%;
+    right: -83%;
+    width: 200px;
+    padding: 10px;
+    margin: 10px;
+    background: #f0efef;
+    border: 2px solid rgb(0, 0, 0);
+    z-index: 1;
+    .sub-menu-link {
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        p {
+            width: 100%;
+            margin: 13px 0;
+            margin-left: 15px;
+            font-size: 18px;
+            color: #555555;
+        }
+        &:hover {
+            p {
+                font-weight: 550;
+            }
+        }
+    }
+}
+
 .userDisplay {
     position: relative;
     font-size: larger;
@@ -30,11 +63,17 @@ body {
     text-decoration: none;
     margin-left: 40px;
     padding-bottom: 20px;
+    &:hover {
+        .sub-menu-wrap {
+            display: block;    
+        }
+    }
 }
+
 header {
     position: absolute;
-    top: 0;
-    left: 0;
+    top: 0%;
+    left: 0%;
     min-width: 794px;
     width: 100%;
     padding-top: 10px;
@@ -44,7 +83,7 @@ header {
     justify-content: space-between;
     align-items: center;
     z-index: 2;
-    ::-webkit-scrollbar {
+    &::-webkit-scrollbar {
         display: none;
     }
 }
@@ -102,14 +141,6 @@ header {
     vertical-align: middle;
 }
 
-#displayName {
-    &:hover {
-        .sub-menu-wrap {
-            display: block;    
-        }
-    }
-}
-
 .user-info {
     display: flex;
     align-items: center;
@@ -121,39 +152,6 @@ header {
         width: 50px;
         border-radius: 50%;
     }
-}
-
-.sub-menu {
-    padding: 20px;
-}
-.sub-menu-link {
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-    p {
-        width: 100%;
-        margin: 13px 0;
-        margin-left: 15px;
-        font-size: 18px;
-        color: #555555;
-    }
-    &:hover {
-        p {
-            font-weight: 550;
-        }
-    }
-}
-.sub-menu-wrap {
-    position: absolute;
-    display: none;
-    top: 79%;
-    right: -83%;
-    width: 200px;
-    padding: 10px;
-    margin: 10px;
-    background: #f0efef;
-    border: 2px solid rgb(0, 0, 0);
-    z-index: 1;
 }
 
 .right-arrow {

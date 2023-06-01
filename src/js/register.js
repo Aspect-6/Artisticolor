@@ -1,4 +1,4 @@
-require('./init').init();
+require('../index').init();
 
 //Show register box
 getElement('login-box').style.transition = '0s';

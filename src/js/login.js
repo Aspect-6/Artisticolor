@@ -1,23 +1,21 @@
-require('./init').init();
+require('../index').init();
 
 onAuthStateChanged(auth, (user) => {
     if(user) {
         console.log(user);
         
         //Create element to display user's username
-        const aElement = document.createElement('a');
-        aElement.setAttribute('id', 'displayName');
-        aElement.classList.add('userDisplay');
-        
+        const userDisplay = `<a id="displayName" class="userDisplay">
+        ${user.displayName + require('lib/templates/user-dropdown.js')}</a>`
+
         //Display user display name
         getElement('lgnButton').remove();
-        getElement('navigation').appendChild(aElement);
-
-        aElement.innerHTML = `${user.displayName}${require('lib/templates/user-dropdown.js')}`
-
-        //Close login window
-        require('anim/login/box').close();
+        getElement('navigation').innerHTML += userDisplay
     } else {
+        //Add login box and its eventListeners to the page
+        document.body.innerHTML += require('lib/templates/login-box')
+        require('anim/login/box').addListeners()
+        
         //Sign in user when login button is pressed
         getElement('login-box').style.transform = 'scale(0)';
 
@@ -29,6 +27,5 @@ onAuthStateChanged(auth, (user) => {
     }
 });
 
-require('anim/login/box').addListeners()
 //Load Styles
 require('styles/lgnregBox.scss')

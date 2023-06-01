@@ -1,16 +1,7 @@
-$accBoxHeight: 500px;
-
 h1 {
     color: rgba(175, 0, 215, 0.751);
 }
-#header {
-    font-size: 2.5em;
-    color: rgba(175, 0, 215, 0.751);
-    margin-bottom: 60px;
-}
-body {
-    overflow-y: hidden;
-}
+$accBoxHeight: 500px;
 
 .accountBox {
     text-align: center;
@@ -25,45 +16,58 @@ body {
     border-radius: 20px;
     padding: 10px;
     z-index: 1;
-}
-
-.dataElements {
-    position: relative;
-    margin-top: 35px;
-    font-size: large;
-    text-align: center;
-    background-color: lightgray;
-    border: none;
-    border-bottom: rgb(183, 161, 101) solid 3px;
-    background: transparent;
-    &:focus {
-        outline: none;
+    #header {
+        font-size: 2.5em;
+        color: rgba(175, 0, 215, 0.751);
+        margin-bottom: 60px;
+    }
+    div {
+        .dataElements {
+            position: relative;
+            margin-top: 35px;
+            font-size: large;
+            text-align: center;
+            background-color: lightgray;
+            border: none;
+            border-bottom: rgb(183, 161, 101) solid 3px;
+            background: transparent;
+            &:focus {
+                outline: none;
+            }
+        }
+        .labels {
+            color: #4C5454;
+            font-size: larger;
+        }
+        #Email {
+            width: 260px;
+        }
+        #Username {
+            width: 222px;
+        }
+        #Passwd {
+            width: 225px;
+        }
+    }
+    #logout {
+        margin-top: 40px;
+        width: 120px;
+        height: 35px;
+        border-radius: 18px;
+        background-color: rgb(200, 200, 200);
+        font-size: 20px;
+        &:hover {
+            background-color: rgb(180, 180, 180);
+            transition: 0.2s;
+        }
     }
 }
 
-.labels {
-    color: #4C5454;
-    font-size: larger;
-}
-
-.wraps {
-    width: 100%;
-    position: relative;
-}
 #profilePhoto {
     height: 130px;
     width: 130px;
     margin: auto;
     margin-bottom: -40px;
-}
-#Email {
-    width: 260px;
-}
-#Username {
-    width: 222px;
-}
-#Passwd {
-    width: 225px;
 }
 #cover {
     position: absolute;
@@ -76,24 +80,9 @@ body {
     opacity: 0.4;
 }
 
-#logout {
-    margin-top: 40px;
-    width: 120px;
-    height: 35px;
-    border-radius: 18px;
-    background-color: rgb(200, 200, 200);
-    font-size: 20px;
-}
-#logout:hover {
-    background-color: rgb(180, 180, 180);
-    transition: 0.2s;
-}
-
 #pdIcon {
     transform: scale(1);
     transition: 0.3s;
-}
-#pdIcon {
     &:hover {
         transform: scale(1.2);
     }
@@ -106,7 +95,7 @@ body {
     right: 0;
     bottom: 0;
     margin: auto;
-    background-color: rgb(196, 196, 196);
+    background-color: #c4c4c4;
     height: 100px;
     width: 300px;
     text-align: center;
@@ -115,44 +104,43 @@ body {
     transition: 0.1s;
     z-index: 4;
     padding: 10px;
-}
-#passwordPrompt {
-    width: 220px;
-    height: 20px;
-    text-align: center;
-}
-#passwordClose {
-    position: absolute;
-    top: 0;
-    left: 250px;
-    right: 0;
-    bottom: 70px;
-    margin: auto;
-    background: transparent;
-    border: none;
-}
-#promptMessage {
-    color: rgb(234, 3, 3);
-}
-
-#passwordCloseImg {
-    height: 15px;
-    transition: 0.1s;
-    transform: scale(1);
-    &:hover {
-        transform: scale(1.1);
+    #passwordPrompt {
+        width: 220px;
+        height: 20px;
+        text-align: center;
     }
-}
-
-#promptButton {
-    margin-bottom: 20px;
-    width: 80px;
-    height: 20px;
-    border-radius: 5px;
-    background: lightgray;
-    transition: 0.1s;
-    border: 1px solid black;
-    &:hover {
-        background: #bababa;
+    #passwordClose {
+        position: absolute;
+        top: 0;
+        left: 250px;
+        right: 0;
+        bottom: 70px;
+        margin: auto;
+        background: transparent;
+        border: none;
+    }
+    #promptMessage {
+        color: rgb(234, 3, 3);
+    }
+    #passwordCloseImg {
+        height: 15px;
+        transition: 0.1s;
+        transform: scale(1);
+        &:hover {
+            transform: scale(1.1);
+        }
+    }
+    
+    #promptButton {
+        margin-bottom: 20px;
+        width: 80px;
+        height: 20px;
+        border-radius: 5px;
+        background: lightgray;
+        transition: 0.1s;
+        border: 1px solid black;
+        &:hover {
+            background: #bababa;
+        }
     }
 }

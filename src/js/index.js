@@ -1,4 +1,4 @@
-require('./init').init();
+require('../index').init();
 
 
 

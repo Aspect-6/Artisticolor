@@ -1,4 +1,4 @@
-require('./init').init();
+require('../index').init();
 
 getElement('makeProjectBtn').addEventListener('click', () => {
     console.log('Hello World')

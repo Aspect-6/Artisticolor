@@ -1,4 +1,4 @@
-require('./init').init();
+require('../index').init();
 
 onAuthStateChanged(auth, (user) => {
     if(user) { //User is logged in
@@ -7,7 +7,7 @@ onAuthStateChanged(auth, (user) => {
         
         //Decrypt user password
         const decryptPassword = require('firebasedb/getData')(user.uid)
-            .then(data => {return require('utils/crypto/decrypt')(data[0], data[1])});
+            .then(data => require('utils/crypto/decrypt')(data[0], data[1]));
         
         decryptPassword.then(pwd => getElement('Passwd').value = pwd );
         
@@ -58,8 +58,6 @@ onAuthStateChanged(auth, (user) => {
                 getElement('Passwd').setAttribute('type', 'password');
                 return;
             }
-
-            
         });
     } else { //No user
         //Shorten the size of userData box

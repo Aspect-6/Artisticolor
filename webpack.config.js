@@ -21,9 +21,9 @@ module.exports = {
     }},
 
     entry: {
-        index: ['./src/js/index', './src/js/login', './src/js/init'],
-        profile: ['./src/js/profile', './src/js/login', './src/js/init'],
-        projects: ['./src/js/projects', './src/js/login', './src/js/init'],
+        index: ['./src/js/index', './src/js/login', './src/index'],
+        profile: ['./src/js/profile', './src/js/login', './src/index'],
+        projects: ['./src/js/projects', './src/js/login', './src/index'],
         register: ['./src/js/register'],
     },
     //Output files to a dist folder
