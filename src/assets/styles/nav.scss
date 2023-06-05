@@ -23,9 +23,6 @@ body {
     right: 20px;
 }
 
-.sub-menu {
-    padding: 20px;
-}
 .sub-menu-wrap {
     position: absolute;
     display: none;
@@ -139,19 +136,6 @@ header {
 #dropdown-arrow {
     margin-left: 5px;
     vertical-align: middle;
-}
-
-.user-info {
-    display: flex;
-    align-items: center;
-    h3 {
-        font-weight: 500;
-        margin-left: 10px;
-    }
-    img {
-        width: 50px;
-        border-radius: 50%;
-    }
 }
 
 .right-arrow {

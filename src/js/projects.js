@@ -1,8 +1,8 @@
-require('../index').init();
+require('../').init();
 
 getElement('makeProjectBtn').addEventListener('click', () => {
     console.log('Hello World')
 });
 
 //Load styles
-require('../assets/styles/lgnregBox.scss'), require('../assets/styles/nav.scss'), require('../assets/styles/projects.scss')
+require('styles/lgnregBox.scss'), require('styles/nav.scss'), require('styles/projects.scss')

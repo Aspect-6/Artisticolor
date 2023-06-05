@@ -13,11 +13,11 @@ module.exports = {
     resolve: { alias: {
         js: path.resolve(__dirname, 'src/js'),
         styles: path.resolve(__dirname, 'src/assets/styles'),
-        utils: path.resolve(__dirname, 'src/utils'),
+        utils: path.resolve(__dirname, 'src/lib/utilities'),
         lib: path.resolve(__dirname, 'src/lib'),
-        anim: path.resolve(__dirname, 'src/utils/anim'),
-        error: path.resolve(__dirname, 'src/utils/anim/error'),
-        firebasedb: path.resolve(__dirname, 'src/utils/firebase')
+        anim: path.resolve(__dirname, 'src/lib/utilities/anim'),
+        error: path.resolve(__dirname, 'src/lib/utilities/anim/error'),
+        firebasedb: path.resolve(__dirname, 'src/lib/utilities/firebase')
     }},
 
     entry: {
@@ -58,9 +58,6 @@ module.exports = {
                 globOptions: {
                     ignore: ['**/styles']
                 },
-            },
-            {
-                from: 'src/lib'
             }]
         }),
     ],

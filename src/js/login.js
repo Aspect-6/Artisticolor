@@ -1,16 +1,13 @@
-require('../index').init();
+require('../').init();
 
-onAuthStateChanged(auth, (user) => {
-    if(user) {
-        console.log(user);
-        
-        //Create element to display user's username
-        const userDisplay = `<a id="displayName" class="userDisplay">
-        ${user.displayName + require('lib/templates/user-dropdown.js')}</a>`
+onAuthStateChanged(auth, (userData) => {
+    if(userData) {
+        console.log(userData);
 
         //Display user display name
         getElement('lgnButton').remove();
-        getElement('navigation').innerHTML += userDisplay
+        getElement('navigation').innerHTML += `<a id="displayName" class="userDisplay">
+        ${userData.displayName + require('lib/templates/user-dropdown')}</a>`
     } else {
         //Add login box and its eventListeners to the page
         document.body.innerHTML += require('lib/templates/login-box')
@@ -22,7 +19,7 @@ onAuthStateChanged(auth, (user) => {
         //If login button pressed then login the user
         getElement('login').addEventListener('click', (e) => {
             e.preventDefault();
-            require('utils/user/signInUser')(auth, getElement('email'), getElement('password'))
+            user.signIn(auth, getElement('email'), getElement('password'))
         });
     }
 });

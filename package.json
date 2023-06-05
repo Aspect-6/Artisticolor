@@ -7,7 +7,7 @@
     "license": "ISC",
     "scripts": {
         "start": "concurrently \"npm:dev\" \"npm:watch\"",
-        "dev": "PORT=8000 serve dist",
+        "dev": "set PORT=8000 && serve.cmd dist",
         "build": "webpack",
         "watch": "nodemon"
     },
@@ -16,7 +16,7 @@
             "./src"
         ],
         "ext": "html js scss",
-        "exec": "npm run build && clear"
+        "exec": "npm run build"
     },
     "bugs": {
         "url": "https://github.com/Aspect-6/Artisticolor/issues"

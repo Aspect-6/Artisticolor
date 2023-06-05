@@ -1,0 +1,1 @@
+module.exports = (data, key) => data.map(data => require('crypto-js').AES.encrypt(data, key).toString())    

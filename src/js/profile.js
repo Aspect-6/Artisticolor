@@ -1,12 +1,12 @@
-require('../index').init();
+require('../').init();
 
-onAuthStateChanged(auth, (user) => {
-    if(user) { //User is logged in
+onAuthStateChanged(auth, (userData) => {
+    if(userData) { //User is logged in
         //Detect and sign out user from account
-        require('utils/user/signOutUser')
+        document.getElementById('logout').addEventListener('click', user.signOut())
         
         //Decrypt user password
-        const decryptPassword = require('firebasedb/getData')(user.uid)
+        const decryptPassword = require('firebasedb/getData')(userData.uid)
             .then(data => require('utils/crypto/decrypt')(data[0], data[1]));
         
         decryptPassword.then(pwd => getElement('Passwd').value = pwd );
@@ -14,12 +14,12 @@ onAuthStateChanged(auth, (user) => {
         //Create img element to display user profile photo 
         const imgEl = document.createElement('img');
         imgEl.setAttribute('id', 'profilePhoto');
-        imgEl.setAttribute('src', user.photoURL);
+        imgEl.setAttribute('src', userData.photoURL);
         getElement('header').appendChild(imgEl); 
 
         //Display username and email
-        getElement('Email').value = user.email;
-        getElement('Username').value = user.displayName;
+        getElement('Email').value = userData.email;
+        getElement('Username').value = userData.displayName;
 
         //Get password icon element
         const pd = getElement('pdIcon');

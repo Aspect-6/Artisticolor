@@ -1,4 +1,4 @@
-module.exports = function (auth, email, password) {
+module.exports = (auth, email, password) => {
     signInWithEmailAndPassword(auth, email.value, password.value)
         .then(() => require('utils/anim/login/box').close())
         .catch(() => {

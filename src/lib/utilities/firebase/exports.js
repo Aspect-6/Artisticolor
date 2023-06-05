@@ -7,7 +7,6 @@ const db = require('firebasedb/functions/db')
 module.exports = {
     ...auth,
     ...db,
-    auth: auth.getAuth(),
-    db: db.getDatabase(),
-    //database: db.ref(db.getDatabase()),
+    auth: auth.getAuth(app),
+    db: db.getDatabase(app),
 }
