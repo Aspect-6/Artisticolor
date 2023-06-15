@@ -1,0 +1,1 @@
+module.exports = (data: string, key: string): string => require('crypto-js').AES.decrypt(data, key).toString(require('crypto-js').enc.Utf8)

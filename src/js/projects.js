@@ -1,5 +1,3 @@
-require('../').init();
-
 getElement('makeProjectBtn').addEventListener('click', () => {
     console.log('Hello World')
 });

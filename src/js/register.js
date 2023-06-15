@@ -1,11 +1,9 @@
-require('../').init();
-
 //Show register box
 getElement('login-box').style.transition = '0s';
 getElement('login-box').style.transform = 'scale(1)';
 getElement('login-box').style.top = '0px';
 
-//Get email, username, & password boxes
+//Get email, username, and password boxes
 const email = getElement('email');
 const username = getElement('username');
 const password = getElement('password');

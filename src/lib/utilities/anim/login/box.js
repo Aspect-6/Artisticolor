@@ -28,12 +28,12 @@ module.exports = {
     },
     addListeners: () => {
         //Text fields
-        getElement('email').addEventListener('focus', module.exports.email)
-        getElement('email').addEventListener('blur', module.exports.deselect)
-        getElement('password').addEventListener('focus', module.exports.password)
-        getElement('password').addEventListener('blur', module.exports.deselect)
+        document.getElementById('email').addEventListener('focus', module.exports.email)
+        document.getElementById('email').addEventListener('blur', module.exports.deselect)
+        document.getElementById('password').addEventListener('focus', module.exports.password)
+        document.getElementById('password').addEventListener('blur', module.exports.deselect)
         //Open/close login-box
-        getElement('lgnButton').addEventListener('focus', module.exports.open)
-        getElement('close').addEventListener('focus', module.exports.close)
+        document.getElementById('lgnButton').addEventListener('click', module.exports.open)
+        document.getElementById('close').addEventListener('click', module.exports.close)
     }
 }

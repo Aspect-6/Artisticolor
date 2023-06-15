@@ -1,17 +1,24 @@
+//@ts-expect-error
 const fb = require('firebasedb/exports')
-const getElement = require('utils/shorten/getElement')
+
+type userType = {
+    auth: {}
+    email: HTMLInputElement
+    username: HTMLInputElement
+    password: HTMLInputElement
+}
 
 module.exports = {
-    createUser(auth, email, username, password) {
+    createUser({ auth, email, username, password }: userType) {
         fb.createUserWithEmailAndPassword(auth, email.value, password.value)
-            .then((userCredential) => {
+            .then((userCredential: { user: { uid: string } }) => {
                 
                 const user = userCredential.user;
                 
-                const KEY = require('utils/crypto/generateKey')();
+                const KEY = require('./crypto').generateKey();
 
                 //Encrypt user data
-                const encryptedData = require('utils/crypto/encrypt')([
+                const encryptedData = require('./crypto').encrypt([
                     email.value,
                     username.value,
                     password.value,
@@ -21,7 +28,7 @@ module.exports = {
                 fb.updateProfile(user, {
                     displayName: username.value,
                     photoURL: 'http://localhost:8000/icons/usercon.png'
-                });
+                }); 
 
                 // Add encrypted data to database along with key
                 fb.set(fb.ref(db, `Users/${user.uid}`), {
@@ -34,24 +41,25 @@ module.exports = {
                 //Redirect
                 location.href = '.profile.html'
             })
-            .catch((error) => {
+            .catch((error: { code: string }) => {
                 const errorcode = error.code
                 
                 if(errorcode == 'auth/invalid-email') {
-                    message.innerHTML = 'Please enter a valid email';
+                    document.getElementById('message').innerHTML = 'Please enter a valid email';
                     require('error/shake')(email)
                 }
                 if(errorcode == 'auth/email-already-in-use') {
-                    message.innerHTML = 'Email is currently in use'
+                    document.getElementById('message').innerHTML = 'Email is currently in use'
                     require('error/shake')(email)
                 }
                 if(errorcode == 'auth/weak-password') {
-                    message.innerHTML = 'Password should be at least 6 characters'
+                    document.getElementById('message').innerHTML = 'Password should be at least 6 characters'
                     require('error/shake')(password)
                 }
             });
     },
-    signIn(auth, email, password) { 
+    signIn({ auth, email, password }: userType) {
+        console.log(email, password)
         fb.signInWithEmailAndPassword(auth, email.value, password.value)
             .then(() => require('utils/anim/login/box').close())
             .catch(() => {
@@ -62,17 +70,15 @@ module.exports = {
             document.getElementById('message').innerHTML = 'Invalid email or password';
         });
     },
-
-    signOut(auth) {
-        document.body.innerHTML += require('lib/templates/login-box');
-        getElement('navigation').innerHTML += '<button id="lgnButton" class="btnLogin">Login</button>';
+    signOut({ auth }: userType) {
         fb.signOut(auth).then(location.href = 'index.html');
     },
 
-    async decryptCredentials(uid) {
+    async decryptCredentials(uid: string) {
+        //require('./firebase').getData(uid)
         return [
-            (await fb.get(fb.ref(db, `Users/${uid}/Password`))).val(),
-            (await fb.get(fb.ref(db, `Users/${uid}/Key`))).val()
+            (await fb.get(fb.ref(fb.db, `Users/${uid}/Password`))).val(),
+            (await fb.get(fb.ref(fb.db, `Users/${uid}/Key`))).val()
         ]
     }
 }

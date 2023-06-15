@@ -1,21 +1,19 @@
-require('../').init();
-
 onAuthStateChanged(auth, (userData) => {
-    if(userData) { //User is logged in
-        //Detect and sign out user from account
-        document.getElementById('logout').addEventListener('click', user.signOut())
+    if(userData) { //User is logged in 
+        // Detect and sign out user
+        getElement('logout').addEventListener('click', () => signOut(auth).then(location.href = 'index.html'))
         
         //Decrypt user password
         const decryptPassword = require('firebasedb/getData')(userData.uid)
             .then(data => require('utils/crypto/decrypt')(data[0], data[1]));
         
-        decryptPassword.then(pwd => getElement('Passwd').value = pwd );
+        decryptPassword.then(pwd => getElement('Password').value = pwd );
         
         //Create img element to display user profile photo 
         const imgEl = document.createElement('img');
-        imgEl.setAttribute('id', 'profilePhoto');
-        imgEl.setAttribute('src', userData.photoURL);
-        getElement('header').appendChild(imgEl); 
+        imgEl.id = 'profilePhoto';
+        imgEl.src = userData.photoURL;
+        getElement('header').appendChild(imgEl);
 
         //Display username and email
         getElement('Email').value = userData.email;
