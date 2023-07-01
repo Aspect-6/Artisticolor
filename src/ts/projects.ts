@@ -1,3 +1,6 @@
+//@ts-expect-error
+import { getElement } from 'utils/shorten/getElement'
+
 getElement('makeProjectBtn').addEventListener('click', () => {
     console.log('Hello World')
 });

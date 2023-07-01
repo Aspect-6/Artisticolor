@@ -1,13 +1,17 @@
+//@ts-expect-error
+import { getElement } from 'utils/shorten/getElement'
+
+//@ts-expect-error
 onAuthStateChanged(auth, (userData) => {
     if(userData) { //User is logged in 
-        // Detect and sign out user
+        //@ts-expect-error Detect and sign out user 
         getElement('logout').addEventListener('click', () => signOut(auth).then(location.href = 'index.html'))
         
         //Decrypt user password
         const decryptPassword = require('firebasedb/getData')(userData.uid)
-            .then(data => require('utils/crypto/decrypt')(data[0], data[1]));
+            .then((data: string[]) => require('utils/crypto/decrypt')(data[0], data[1]));
         
-        decryptPassword.then(pwd => getElement('Password').value = pwd );
+        decryptPassword.then((pwd: string|number) => getElement('Password').value = pwd );
         
         //Create img element to display user profile photo 
         const imgEl = document.createElement('img');
@@ -26,8 +30,8 @@ onAuthStateChanged(auth, (userData) => {
         const coverDiv = document.createElement('div');
 
         //Set coverDiv id to "cover"
-        coverDiv.setAttribute('id', 'cover');
-        coverDiv.setAttribute('class', 'promptClose');
+        coverDiv.id = 'cover'
+        coverDiv.classList.add('promptClose');
         coverDiv.style.position = 'fixed'
 
         //Add event listener to password icon
@@ -40,14 +44,14 @@ onAuthStateChanged(auth, (userData) => {
                 //Add coverDiv to body
                 document.body.appendChild(coverDiv);
 
-                const removeCoverDiv = () => { eval("try{getElement('cover').remove()}catch{};getElement('passwordPromptDiv').style.transform='scale(0)';", "return;") }
+                const removeCoverDiv = () => { eval("try{getElement('cover').remove()}catch{};getElement('passwordPromptDiv').style.transform='scale(0)'; return;") }
 
                 //Add event listener to close button and coverDiv      
                 getElement('passwordClose').addEventListener('click', removeCoverDiv);
                 coverDiv.addEventListener('click', removeCoverDiv);
 
                 //Check if confirm button is clicked
-                getElement('promptButton').addEventListener('click', (e) => {
+                getElement('promptButton').addEventListener('click', (e: MouseEvent) => {
                     e.preventDefault();
                     require('utils/confirm/confirmPassword')(decryptPassword, pd, coverDiv)
                 });

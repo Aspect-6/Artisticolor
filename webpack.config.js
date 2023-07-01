@@ -12,7 +12,7 @@ module.exports = {
 
     resolve: { 
         alias: {
-            js: path.resolve(__dirname, 'src/js'),
+            ts: path.resolve(__dirname, 'src/ts'),
             styles: path.resolve(__dirname, 'src/assets/styles'),
             utils: path.resolve(__dirname, 'src/lib/utilities'),
             lib: path.resolve(__dirname, 'src/lib'),
@@ -25,10 +25,10 @@ module.exports = {
     },
 
     entry: {
-        index: ['./src/index', './src/app/index', './src/js/login', './src/js/index'],
-        profile: ['./src/index', './src/app/profile', './src/js/login', './src/js/profile'],
-        projects: ['./src/index', './src/app/projects', './src/js/login', './src/js/projects'],
-        register: ['./src/index', './src/app/register', './src/js/register'],
+        index: ['./src/index', './src/app/index', './src/components/functions/login', './src/ts/index'],
+        profile: ['./src/index', './src/app/profile', './src/components/functions/login', './src/ts/profile'],
+        projects: ['./src/index', './src/app/projects', './src/components/functions/login', './src/ts/projects'],
+        register: ['./src/index', './src/app/register', './src/ts/register'],
     },
     //Output files to a dist folder
     output: {

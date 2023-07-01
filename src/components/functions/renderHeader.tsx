@@ -1,5 +1,5 @@
-import Header from "../../components/Header/Header";
-import LoginBox from "../../components/LoginBox/LoginBox";
+import Header from "../Header/Header";
+import LoginBox from "../LoginBox/LoginBox";
 
 export function renderHeader(currentURL: string, authState: { displayName: string } | null) {
     //Determine urls and pageNames to be passed into <Header />

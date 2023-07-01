@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react'
-import { renderHeader } from './functions/renderHeader'
+import { renderHeader } from './renderHeader'
 
 export default function Login() {
+
     const [authState, setAuthState] = useState(null)
     
     useEffect(() => {
@@ -15,7 +16,7 @@ export default function Login() {
     }, [authState])
 
     return renderHeader(location.href, authState);
-   
+    
 }
 
 //Load Styles

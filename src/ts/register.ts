@@ -1,3 +1,6 @@
+//@ts-expect-error
+import { getElement } from 'utils/shorten/getElement'
+
 //Show register box
 getElement('login-box').style.transition = '0s';
 getElement('login-box').style.transform = 'scale(1)';
@@ -22,7 +25,7 @@ getElement('submit').addEventListener('click', () => {
 		return;
 	}	
 
-	//Create a user and add user to database
+	//@ts-expect-error | Create a user and add user to database
 	user.createUser(auth, email, username, password)
 });
 require('utils/anim/register/box').addListeners()
