@@ -14,9 +14,7 @@ export default function Login() {
             }
         })
     }, [authState])
-
     return renderHeader(location.href, authState);
-    
 }
 
 //Load Styles
