@@ -1,12 +1,23 @@
 {
-    "compilerOptions": {
-        "outDir": "./dist",
-        "noImplicitAny": true,
-        "module": "es6",
-        "target": "es5",
-        "jsx": "react-jsx",
-        "allowJs": true,
-        "moduleResolution": "node",
-        "allowSyntheticDefaultImports": true,
-    }
+	"compilerOptions": {
+		"outDir": "./dist",
+		"noImplicitAny": true,
+		"module": "es6",
+		"target": "es5",
+		"jsx": "react-jsx",
+		"allowJs": true,
+		"moduleResolution": "node",
+		"allowSyntheticDefaultImports": true,
+        "baseUrl": ".",
+        "paths": {
+            "@ts/*": ["./src/ts"],
+            "@styles/*": ["./src/assets/styles"],
+            "@utils/*": ["./src/lib/utilities"],
+            "@lib/*": ["./src/lib"],
+            "@anim/*": ["./src/lib/utilities/anim"],
+            "@error/*": ["./src/lib/utilities/anim/error"],
+            "@firebasedb/*": ["./src/lib/utilities/firebase/*"],
+            "@components/*": ["./src/components"]
+        }
+	}
 }

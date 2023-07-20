@@ -1,7 +1,7 @@
-const Db = require('@firebase/database')
-module.exports = {
-    get: Db.get,
-    set: Db.set,
-    ref: Db.ref,
-    getDatabase: Db.getDatabase
+const db = require('@firebase/database')
+export default {
+    get: db.get,
+    set: db.set,
+    ref: db.ref,
+    getDatabase: db.getDatabase
 }

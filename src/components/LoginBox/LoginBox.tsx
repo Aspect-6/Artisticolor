@@ -1,6 +1,6 @@
-import { useEffect, useRef, useState } from 'react'
+// import { signInWithEmailAndPassword } from '@firebase/auth';
+import { useEffect, useRef, useState } from 'react';
 import InputWrap from "./InputWrap";
-import { signInWithEmailAndPassword } from '@firebase/auth';
 
 export default function LoginBox() {
     const handleClick = () => require('anim/login/box').close();

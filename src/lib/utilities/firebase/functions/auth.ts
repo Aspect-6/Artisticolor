@@ -1,9 +1,9 @@
-const Auth = require('@firebase/auth')
-module.exports = {
-    getAuth: Auth.getAuth,
-    signOut: Auth.signOut,
-    updateProfile: Auth.updateProfile,
-    onAuthStateChanged: Auth.onAuthStateChanged,
-    signInWithEmailAndPassword: Auth.signInWithEmailAndPassword,
-    createUserWithEmailAndPassword: Auth.createUserWithEmailAndPassword
+const auth = require('@firebase/auth')
+export default {
+    getAuth: auth.getAuth,
+    signOut: auth.signOut,
+    updateProfile: auth.updateProfile,
+    onAuthStateChanged: auth.onAuthStateChanged,
+    signInWithEmailAndPassword: auth.signInWithEmailAndPassword,
+    createUserWithEmailAndPassword: auth.createUserWithEmailAndPassword
 }

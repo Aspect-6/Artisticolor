@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { renderHeader } from './renderHeader'
+// import LoginBox from '../LoginBox/LoginBox'
 
 export default function Login() {
 
@@ -14,7 +15,11 @@ export default function Login() {
             }
         })
     }, [authState])
-    return renderHeader(location.href, authState);
+    return (
+        <>
+            {renderHeader(location.href, authState)}
+        </>
+    )
 }
 
 //Load Styles

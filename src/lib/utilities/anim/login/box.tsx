@@ -1,9 +1,14 @@
+////@ts-expect-error
+//import LoginBox from "components/LoginBox/LoginBox";
+
 const getElement = require('utils/shorten/getElement')
+
+// getElement('login-box').style.transform = 'scale(1)'
+// const open = () => (<LoginBox />)
+
 module.exports = {
     open: () => getElement('login-box').style.transform = 'scale(1)',
-    close: () => {
-        getElement('login-box').style.transform = 'scale(0)';   
-    },
+    close: () => getElement('login-box').style.transform = 'scale(0)',
     email: () => {
         getElement('emailLabel').style.transform = 'translateY(-200%)';
         getElement('emailLabel').style.transition = '0.25s';
