@@ -6,11 +6,22 @@ const HTMLPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 
+const a = readdir('./src/pages').map(file => {
+    return file.split('.')[0]
+}).map(file => new HTMLPlugin({
+    template: `./src/pages/${file}.html`,
+    inject: true,
+    chunks: [file],
+    filename: `${file}.html`,
+}))
+//console.log(...a)
+
+
 module.exports = {
 
     mode: 'development',
 
-    resolve: { 
+    resolve: {
         alias: {
             ts: path.resolve(__dirname, 'src/ts'),
             styles: path.resolve(__dirname, 'src/assets/styles'),
@@ -36,9 +47,9 @@ module.exports = {
         filename: "[name].js"
     },
 
-    module: { 
+    module: {
         rules: [{
-            test:/\.s[ac]ss$/,
+            test: /\.s[ac]ss$/,
             use: [
                 MiniCssExtractPlugin.loader,
                 'css-loader',
@@ -63,8 +74,8 @@ module.exports = {
 
     plugins: [
         //Add HTML files
-        ...readdir('src/pages').map(file => file.split('.')[0]).map(file => new HTMLPlugin({
-            template: `src/pages/${file}.html`,
+        ...readdir('./src/pages').filter(file => !file.includes('Icon')).map(file => file.split('.')[0]).map(file => new HTMLPlugin({
+            template: `./src/pages/${file}.html`,
             inject: true,
             chunks: [file],
             filename: `${file}.html`,
