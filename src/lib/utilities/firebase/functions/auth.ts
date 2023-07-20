@@ -1,5 +1,6 @@
+//@ts-expect-error
 const auth = require('@firebase/auth')
-export default {
+module.exports = {
     getAuth: auth.getAuth,
     signOut: auth.signOut,
     updateProfile: auth.updateProfile,

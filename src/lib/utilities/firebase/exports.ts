@@ -1,8 +1,8 @@
-//Initialize app
-const app = require('./functions/app')
-//Import required firebase functions
-const auth = require('./functions/auth')
-const db = require('./functions/db')
+const app = require('firebasedb/functions/app')
+//@ts-expect-error
+const auth = require('firebasedb/functions/auth')
+//@ts-expect-error
+const db = require('firebasedb/functions/db')
 //Initialize Firebase
 
 module.exports = {

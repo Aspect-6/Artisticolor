@@ -1,4 +1,4 @@
-export default require('@firebase/app').initializeApp({
+module.exports = require('@firebase/app').initializeApp({
     apiKey: "AIzaSyC0AlemsEruFplUQFL5DVRg6oQtmfrhz_I",
     authDomain: "artisticolor-a55cf.firebaseapp.com",
     databaseURL: "https://artisticolor-a55cf-default-rtdb.firebaseio.com",
