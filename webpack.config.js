@@ -5,23 +5,14 @@ const { readdirSync: readdir } = require('fs')
 const HTMLPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
-
-const a = readdir('./src/pages').map(file => {
-    return file.split('.')[0]
-}).map(file => new HTMLPlugin({
-    template: `./src/pages/${file}.html`,
-    inject: true,
-    chunks: [file],
-    filename: `${file}.html`,
-}))
-//console.log(...a)
-
+const TSConfigPathsPlugin = require('tsconfig-paths-webpack-plugin')
 
 module.exports = {
 
     mode: 'development',
 
     resolve: {
+        plugins: [new TSConfigPathsPlugin()],
         alias: {
             ts: path.resolve(__dirname, 'src/ts'),
             styles: path.resolve(__dirname, 'src/assets/styles'),
@@ -30,7 +21,7 @@ module.exports = {
             lib: path.resolve(__dirname, 'src/lib'),
             anim: path.resolve(__dirname, 'src/lib/utilities/anim'),
             error: path.resolve(__dirname, 'src/lib/utilities/anim/error'),
-            firebasedb: path.resolve(__dirname, 'src/lib/utilities/firebase'),
+            firebase: path.resolve(__dirname, 'src/lib/utilities/firebase'),
             components: path.resolve(__dirname, 'src/components')
         },
         extensions: ['.tsx', '.ts', '.jsx', '.js']
