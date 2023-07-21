@@ -1,11 +1,9 @@
-const app = require('firebasedb/functions/app')
-//@ts-expect-error
-const auth = require('firebasedb/functions/auth')
-//@ts-expect-error
-const db = require('firebasedb/functions/db')
-//Initialize Firebase
+import app from '@firebase/functions/app'
+import auth from '@firebase/functions/auth'
+import db from '@firebase/functions/db'
 
-module.exports = {
+//Initialize Firebase
+export default {
 	...auth,
 	...db,
 	auth: auth.getAuth(app),
