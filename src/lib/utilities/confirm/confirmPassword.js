@@ -1,5 +1,5 @@
-module.exports = function(decryptPassword, pd, coverDiv) {
-    const getElement = require('utils/shorten/getElement')
+module.exports = function (decryptPassword, pd, coverDiv) {
+    const getElement = require('@utils/shorten/getElement')
     decryptPassword.then((password) => {
         //If user confirms with correct password, display password and show open eye
         if (getElement('passwordPrompt').value == password) {

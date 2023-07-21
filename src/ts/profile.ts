@@ -1,5 +1,5 @@
 //@ts-expect-error
-import { getElement } from 'utils/shorten/getElement'
+import { getElement } from '@utils/shorten/getElement'
 
 //@ts-expect-error
 onAuthStateChanged(auth, (userData) => {
@@ -12,10 +12,9 @@ onAuthStateChanged(auth, (userData) => {
 		)
 
 		//Decrypt user password
-		const decryptPassword = require('firebasedb/getData')(
-			userData.uid
-		).then((data: string[]) =>
-			require('utils/crypto/decrypt')(data[0], data[1])
+		const decryptPassword = require('@firebase/getData')(userData.uid).then(
+			(data: string[]) =>
+				require('@utils/crypto/decrypt')(data[0], data[1])
 		)
 
 		decryptPassword.then(
@@ -70,7 +69,7 @@ onAuthStateChanged(auth, (userData) => {
 					'click',
 					(e: MouseEvent) => {
 						e.preventDefault()
-						require('utils/confirm/confirmPassword')(
+						require('@utils/confirm/confirmPassword')(
 							decryptPassword,
 							pd,
 							coverDiv
@@ -92,4 +91,4 @@ onAuthStateChanged(auth, (userData) => {
 })
 
 // Load styles
-require('import_bundles/styles').profile
+require('@import_bundles/styles').profile
