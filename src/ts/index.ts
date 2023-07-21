@@ -1,3 +1,2 @@
 //Load styles
-require('styles/index.scss'), require('styles/nav.scss')
-import 'bootstrap/dist/js/bootstrap.bundle.js'
+require('import_bundles/styles').index

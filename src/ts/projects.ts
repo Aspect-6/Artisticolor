@@ -6,4 +6,4 @@ getElement('makeProjectBtn').addEventListener('click', () => {
 });
 
 //Load styles
-require('styles/lgnregBox.scss'), require('styles/nav.scss'), require('styles/projects.scss')
+require('import_bundles/styles').projects

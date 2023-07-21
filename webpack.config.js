@@ -25,6 +25,7 @@ module.exports = {
         alias: {
             ts: path.resolve(__dirname, 'src/ts'),
             styles: path.resolve(__dirname, 'src/assets/styles'),
+            import_bundles: path.resolve(__dirname, 'src/import_bundles'),
             utils: path.resolve(__dirname, 'src/lib/utilities'),
             lib: path.resolve(__dirname, 'src/lib'),
             anim: path.resolve(__dirname, 'src/lib/utilities/anim'),

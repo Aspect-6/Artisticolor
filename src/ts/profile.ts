@@ -92,6 +92,4 @@ onAuthStateChanged(auth, (userData) => {
 })
 
 // Load styles
-require('styles/lgnregBox.scss'),
-	require('styles/profile.scss'),
-	require('styles/nav.scss')
+require('import_bundles/styles').profile
