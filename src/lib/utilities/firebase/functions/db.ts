@@ -1,5 +1,6 @@
+//@ts-expect-error
 const db = require('@firebase/database')
-export default {
+module.exports = {
     get: db.get,
     set: db.set,
     ref: db.ref,
