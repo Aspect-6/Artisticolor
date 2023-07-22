@@ -13,17 +13,6 @@ module.exports = {
 
     resolve: {
         plugins: [new TSConfigPathsPlugin()],
-        alias: {
-            ts: path.resolve(__dirname, 'src/ts'),
-            styles: path.resolve(__dirname, 'src/assets/styles'),
-            import_bundles: path.resolve(__dirname, 'src/import_bundles'),
-            utils: path.resolve(__dirname, 'src/lib/utilities'),
-            lib: path.resolve(__dirname, 'src/lib'),
-            anim: path.resolve(__dirname, 'src/lib/utilities/anim'),
-            error: path.resolve(__dirname, 'src/lib/utilities/anim/error'),
-            firebase: path.resolve(__dirname, 'src/lib/utilities/firebase'),
-            components: path.resolve(__dirname, 'src/components')
-        },
         extensions: ['.tsx', '.ts', '.jsx', '.js']
     },
 

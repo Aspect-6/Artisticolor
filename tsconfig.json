@@ -8,16 +8,17 @@
 		"allowJs": true,
 		"moduleResolution": "node",
 		"allowSyntheticDefaultImports": true,
-        "baseUrl": ".",
+        "baseUrl": "./src",
         "paths": {
-            "@ts/*": ["./src/ts"],
-            "@styles/*": ["./src/assets/styles"],
-            "@utils/*": ["./src/lib/utilities"],
-            "@lib/*": ["./src/lib"],
-            "@anim/*": ["./src/lib/utilities/anim"],
-            "@error/*": ["./src/lib/utilities/anim/error"],
-            "@firebasedb/*": ["./src/lib/utilities/firebase/*"],
-            "@components/*": ["./src/components"]
+            "@ts/*": ["ts/*"],
+            "@styles/*": ["assets/styles/*"],
+            "@import_bundles/*": ["import_bundles/*"],
+            "@utils/*": ["lib/utilities/*"],
+            "@lib/*": ["lib/*"],
+            "@anim/*": ["lib/utilities/anim/*"],
+            "@error/*": ["lib/utilities/anim/error/*"],
+            "@firebase/*": ["lib/utilities/firebase/*"],
+            "@components/*": ["components/*"]
         }
 	}
 }
