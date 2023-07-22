@@ -1,4 +1,4 @@
-import fb from '@firebase/exports'
+const fb = require('@firebase/exports')
 
 module.exports = {
 	async getData(uid: string) {

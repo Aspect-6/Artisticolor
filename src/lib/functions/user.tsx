@@ -1,4 +1,4 @@
-import fb from '@firebase/exports'
+const fb = require('@firebase/exports')
 
 type userType = {
 	auth: {}
@@ -36,7 +36,7 @@ export default {
 				})
 
 				//Redirect
-				location.href = '.profile.html'
+				location.href = 'profile.html'
 			})
 			.catch((error: { code: string }) => {
 				const errorcode = error.code
@@ -44,17 +44,17 @@ export default {
 				if (errorcode == 'auth/invalid-email') {
 					document.getElementById('message').innerHTML =
 						'Please enter a valid email'
-					require('error/shake')(email)
+					require('@error/shake')(email)
 				}
 				if (errorcode == 'auth/email-already-in-use') {
 					document.getElementById('message').innerHTML =
 						'Email is currently in use'
-					require('error/shake')(email)
+					require('@error/shake')(email)
 				}
 				if (errorcode == 'auth/weak-password') {
 					document.getElementById('message').innerHTML =
 						'Password should be at least 6 characters'
-					require('error/shake')(password)
+					require('@error/shake')(password)
 				}
 			})
 	},
@@ -64,7 +64,7 @@ export default {
 			.then(() => require('@anim/login/box').close())
 			.catch(() => {
 				//Shake input boxes
-				require('error/shake')(email, password)
+				require('@error/shake')(email, password)
 
 				//Display error message
 				document.getElementById('message').innerHTML =
