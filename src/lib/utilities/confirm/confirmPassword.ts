@@ -1,6 +1,6 @@
-module.exports = function (decryptPassword, pd, coverDiv) {
+module.exports = function(decryptPassword: any, pd: HTMLImageElement, coverDiv: HTMLDivElement) {
     const getElement = require('@utils/shorten/getElement')
-    decryptPassword.then((password) => {
+    decryptPassword.then((password: string | number) => {
         //If user confirms with correct password, display password and show open eye
         if (getElement('passwordPrompt').value == password) {
             //Show password and set eye image to open
@@ -18,7 +18,7 @@ module.exports = function (decryptPassword, pd, coverDiv) {
             getElement('promptMessage').innerHTML = 'Incorrect Password'
 
             //Shake box
-            require('error/shake')(getElement('passwordPrompt'))
+            require('@error/shake')(getElement('passwordPrompt'))
         }
     });
 }
