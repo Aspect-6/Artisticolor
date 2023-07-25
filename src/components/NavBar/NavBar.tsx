@@ -1,7 +1,7 @@
 import NavBarNav from './NavBarDropdown/NavBarNav'
 import NavBarToggler from './NavBarToggler'
 import Logo from './NavBarDropdown/Logo'
-import WebName from './Website/WebsiteName'
+import WebName from './NavBarDropdown/WebsiteName'
 
 export default function NavBar() {
 	return (
