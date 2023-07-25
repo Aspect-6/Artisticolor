@@ -1,114 +1,115 @@
 #login-box {
-    font-family: sans-serif;
-    width: 350px;
-    height: 470px;
-    padding: 30px;
-    text-align: center;
-    background: #dcdee4;
-    border-radius: 20px;
-    transform: scale(0);
-    transition: 0.2s;
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 50px;
-    bottom: 0;
-    margin: auto;
-    z-index: 2;
+	font-family: sans-serif;
+	width: 350px;
+	height: 470px;
+	padding: 30px;
+	text-align: center;
+	background: #dcdee4;
+	border-radius: 20px;
+	z-index: 2;
 
-    h1 {
-        color: rgb(150, 40, 240);
-        font-size: 35px;
-        text-transform: uppercase;
-        font-weight: 700;
-    }
-    [type='submit'] {
-        border: 0;
-        background: lightgray;
-        display: block;
-        margin: 40px auto;
-        margin-top: 20px;
-        text-align: center;
-        font-size: large;
-        border: 3px solid lightslategray;
-        padding: 5px 15px;
-        outline: none;
-        border-radius: 24px;
-        transition: 0.25px;
-        cursor: pointer;
-    }
-    [type='submit']:hover {
-        background: rgb(185, 185, 185);
-        transition: 0.2s;
-    }
-    label {
-        position: absolute;
-        top: 50%;
-        left: 5px;
-        transform: translateY(-50%);
-        pointer-events: none;
-        color: rgb(78, 0, 150);
-    }
+	h1 {
+		color: rgb(150, 40, 240);
+		font-size: 35px;
+		text-transform: uppercase;
+		font-weight: 700;
+	}
+	[type='submit'] {
+		border: 0;
+		background: lightgray;
+		display: block;
+		margin: 40px auto;
+		margin-top: 20px;
+		text-align: center;
+		font-size: large;
+		border: 3px solid lightslategray;
+		padding: 5px 15px;
+		outline: none;
+		border-radius: 24px;
+		transition: 0.25px;
+		cursor: pointer;
+		&:hover {
+			background: rgb(185, 185, 185);
+			transition: 0.2s;
+		}
+	}
+	label {
+		position: absolute;
+		top: 50%;
+		left: 5px;
+		transform: translateY(-50%);
+		pointer-events: none;
+		color: rgb(78, 0, 150);
+	}
 
-    input:-webkit-autofill {
-        border: 1px solid none;
-        -webkit-text-fill-color: black;
-        transition: background-color 5000s ease-in-out 0s;
-    }
+	input:-webkit-autofill {
+		border: 1px solid none;
+		-webkit-text-fill-color: black;
+		transition: background-color 5000s ease-in-out 0s;
+	}
 }
 
-#email, #username, #password {
-    background: transparent;
-    font-size: large;
-    border: none;
-    padding: 15px 10px;
-    outline: none;
-    transition: 0.25px;
-    width: 100%;
-    border-bottom: 3px solid gray;
-    margin: 15px auto;
+#email,
+#username,
+#password {
+	background: transparent;
+	font-size: large;
+	border: none;
+	padding: 15px 10px;
+	outline: none;
+	transition: 0.25px;
+	width: 100%;
+	border-bottom: 3px solid gray;
+	margin: 15px auto;
 }
 #message {
-    margin-top: 0px;
-    color: rgb(234, 3, 3);
-    font-weight: 800;
+	margin-top: 0px;
+	color: rgb(234, 3, 3);
+	font-weight: 800;
 }
 .wraps {
-    width: 100%;
-    position: relative;
+	width: 100%;
+	position: relative;
 }
 
 #close {
-    position: absolute;
-    top: 25px;
-    right: 25px;
-    background: transparent;
-    border: none;
-    transform: scale(0.8);
-    transition: 0.5s;
+	position: absolute;
+	top: 25px;
+	right: 25px;
+	background: transparent;
+	border: none;
+	transform: scale(0.8);
+	transition: 0.5s;
+	&:hover {
+		transform: scale(1);
+		background: transparent;
+	}
 }
-#close:hover {
-    transform: scale(1);
-    background: transparent;
+
+.form-control.is-valid:focus,
+.was-validated :valid.form-control {
+	border-color: inherit !important;
+	background-image: inherit !important;
+	box-shadow: inherit !important;
 }
 
 .error {
-    animation: shakeno 0.5s;
+	animation: shakeno 0.5s;
 }
 @keyframes shakeno {
-    0% {
-        margin-left: -10px;
-    }
-    25% {
-        margin-left: 10px;
-    }
-    50% {
-        margin-left: -10px;
-    }
-    75% {
-        margin-left: 10px;
-    }
-    100% {
-        margin-left: -10px;
-    }
+	0% {
+		margin-left: -10px;
+	}
+	25% {
+		margin-left: 10px;
+	}
+	50% {
+		margin-left: -10px;
+	}
+	75% {
+		margin-left: 10px;
+	}
+	100% {
+		margin-left: -10px;
+	}
 }
