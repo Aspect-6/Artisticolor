@@ -3,9 +3,9 @@ import { useRef, useState } from 'react'
 import SignUpBtn from '../SignUpBtn'
 import FormInput from './FormInput'
 
-interface DropdownFormProps extends React.FormHTMLAttributes<HTMLFormElement> {}
+interface FormProps extends React.FormHTMLAttributes<HTMLFormElement> {}
 
-export default function DropdownForm({ ...props }: DropdownFormProps) {
+export default function Form({ ...props }: FormProps) {
 	const [email, setEmail] = useState('')
 	const [password, setPassword] = useState('')
 
@@ -22,10 +22,12 @@ export default function DropdownForm({ ...props }: DropdownFormProps) {
 		formRef.current.classList.add('was-validated')
 
 		const isError = user.signIn(email, password)
-		isError.then((e: string | undefined) => {
+		isError.then((e) => {
 			if (!e || email == '' || password == '') {
-				if (!errorRef.current.className.includes('visually-hidden'))
+				if (!errorRef.current.className.includes('visually-hidden')) {
 					errorRef.current.classList.add('visually-hidden')
+					formRef.current.style.borderColor = 'rgb(0 0 0 / 18%)'
+				}
 				return
 			}
 			formRef.current.style.borderColor = '#dc3545'
