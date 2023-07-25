@@ -1,6 +1,5 @@
 module.exports = {
     //Import firebase functions
-    ...require('@firebase/exports'),
 
     //Functions
     user: require('@lib/functions/user'),

@@ -1,11 +1,12 @@
-//@ts-expect-error
+import { auth, onAuthStateChanged, signOut } from '@lib/functions/auth'
+
 onAuthStateChanged(auth, (userData) => {
 	if (userData) {
 		//User is logged in
 
 		getElement('logout').addEventListener('click', () =>
-			//@ts-expect-error Detect and sign out user
-			signOut(auth).then((location.href = 'index.html'))
+			//Detect and sign out user
+			signOut(auth).then(() => location.href = 'index.html')
 		)
 
 		//Decrypt user password
@@ -22,7 +23,7 @@ onAuthStateChanged(auth, (userData) => {
 		getElement('header').innerHTML = imgEl
 
 		//Display username and email
-		getElement('Email').value = userData
+		getElement('Email').value = userData.email
 		getElement('Username').value = userData.displayName
 
 		//Get password icon element

@@ -1,16 +1,23 @@
-const fb = require('@firebase/exports')
+import {
+	auth,
+	createUserWithEmailAndPassword,
+	getAuth,
+	signInWithEmailAndPassword,
+	signOut,
+	updateProfile,
+} from './auth'
+import { db, get, ref, set } from './database'
 
-type userType = {
-	auth: {}
+interface userType {
 	email: HTMLInputElement
 	username: HTMLInputElement
 	password: HTMLInputElement
 }
 
 export default {
-	createUser({ auth, email, username, password }: userType) {
-		fb.createUserWithEmailAndPassword(auth, email.value, password.value)
-			.then((userCredential: { user: { uid: string } }) => {
+	createUser({ email, username, password }: userType) {
+		createUserWithEmailAndPassword(auth, email.value, password.value)
+			.then((userCredential) => {
 				const user = userCredential.user
 
 				const KEY = require('./crypto').generateKey()
@@ -22,13 +29,13 @@ export default {
 				)
 
 				// Set user displayName and photoURL
-				fb.updateProfile(user, {
+				updateProfile(user, {
 					displayName: username.value,
 					photoURL: 'http://localhost:8000/icons/usercon.png',
 				})
 
 				// Add encrypted data to database along with key
-				fb.set(fb.ref(fb.db, `Users/${user.uid}`), {
+				set(ref(db, `Users/${user.uid}`), {
 					Email: encryptedData[0],
 					Username: encryptedData[1],
 					Password: encryptedData[2],
@@ -36,9 +43,9 @@ export default {
 				})
 
 				//Redirect
-				location.href = 'profile.html'
+				location.href = './profile.html'
 			})
-			.catch((error: { code: string }) => {
+			.catch((error) => {
 				const errorcode = error.code
 
 				if (errorcode == 'auth/invalid-email') {
@@ -58,28 +65,18 @@ export default {
 				}
 			})
 	},
-	signIn({ auth, email, password }: userType) {
-		console.log(email, password)
-		fb.signInWithEmailAndPassword(auth, email.value, password.value)
-			.then(() => require('@anim/login/box').close())
-			.catch(() => {
-				//Shake input boxes
-				require('@error/shake')(email, password)
-
-				//Display error message
-				document.getElementById('message').innerHTML =
-					'Invalid email or password'
-			})
+	signIn(email: string, password: string) {
+		return signInWithEmailAndPassword(auth, email, password).catch(() => 'error')
 	},
-	signOut({ auth }: userType) {
-		fb.signOut(auth).then((location.href = 'index.html'))
+	signOut() {
+		signOut(auth).then(() => (location.href = 'index.html'))
 	},
 
 	async decryptCredentials(uid: string) {
 		//require('./firebase').getData(uid)
 		return [
-			(await fb.get(fb.ref(fb.db, `Users/${uid}/Password`))).val(),
-			(await fb.get(fb.ref(fb.db, `Users/${uid}/Key`))).val(),
+			(await get(ref(db, `Users/${uid}/Password`))).val(),
+			(await get(ref(db, `Users/${uid}/Key`))).val(),
 		]
 	},
 }
