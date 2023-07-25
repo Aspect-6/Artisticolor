@@ -5,26 +5,26 @@ const bootstrap = {
 
 module.exports = {
 	index: {
+		...bootstrap,
 		...require('@styles/index.scss'),
 		...require('@styles/lgnregBox.scss'),
 		...require('@styles/nav.scss'),
-		...bootstrap,
 	},
 	profile: {
+		...bootstrap,
 		...require('@styles/profile.scss'),
 		...require('@styles/lgnregBox.scss'),
 		...require('@styles/nav.scss'),
-		...bootstrap,
 	},
 	projects: {
+		...bootstrap,
 		...require('@styles/projects.scss'),
 		...require('@styles/lgnregBox.scss'),
 		...require('@styles/nav.scss'),
-		...bootstrap,
 	},
 	register: {
+		...bootstrap,
 		...require('@styles/register.scss'),
 		...require('@styles/lgnregBox.scss'),
-		...bootstrap,
 	},
 }
