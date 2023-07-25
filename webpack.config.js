@@ -66,7 +66,7 @@ module.exports = {
             patterns: [{
                 from: 'src/assets/',
                 globOptions: {
-                    ignore: ['**/styles']
+                    ignore: ['**/styles', '**/.DS_Store']
                 },
             }]
         }),
