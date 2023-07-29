@@ -1,6 +1,4 @@
 module.exports = {
-    //Import firebase functions
-
     //Functions
     user: require('@lib/functions/user'),
 
@@ -11,4 +9,6 @@ module.exports = {
 //Globalize exported data
 for (const key in module.exports) global[key] = module.exports[key];
 
-if (location.href !== 'register.html') { } //console.log('true')
+if (!location.href.includes('register')) {
+    document.body.style.background = 'none'
+} //console.log('true')
