@@ -10,15 +10,18 @@
 		"allowSyntheticDefaultImports": true,
         "baseUrl": "./src",
         "paths": {
+            "@components/*": ["components/*"],
+            "@hooks/*": ["hooks/*"],
+            "@config/*": ["config/*"],
             "@ts/*": ["ts/*"],
-            "@styles/*": ["assets/styles/*"],
             "@import_bundles/*": ["import_bundles/*"],
-            "@utils/*": ["lib/utilities/*"],
+            "@styles/*": ["assets/styles/*"],
+            // All folder under lib/
             "@lib/*": ["lib/*"],
+            "@utils/*": ["lib/utilities/*"],
             "@anim/*": ["lib/utilities/anim/*"],
             "@error/*": ["lib/utilities/anim/error/*"],
             "@firebase/*": ["lib/utilities/firebase/*"],
-            "@components/*": ["components/*"]
         }
 	}
 }

@@ -1,4 +1,5 @@
-import Login from '@components/functions/login'
+import { ROUTES } from '@config/browser-routes.config'
+import useDisplayName from '@hooks/useDisplayname'
 import LoginForm from './LoginDropdown/Form'
 import NavBarLink from './NavBarLink'
 import ToggleFormBtn from './ToggleFormBtn'
@@ -9,16 +10,16 @@ import UserDropdown from './UserDropdown/UserDropdown'
 interface NavBarNavProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 export default function NavBarNav({ ...props }: NavBarNavProps) {
-	const currentAuthState = Login()
+	const { displayName } = useDisplayName()
 
 	return (
 		<div {...props}>
 			<ul className='navbar-nav'>
-				<NavBarLink value='Home' href='./index.html' />
-				<NavBarLink value='Projects' href='./projects.html' />
-				<NavBarLink value='Profile' href='./profile.html' />
-				{currentAuthState ? (
-					<UserDropdown displayName={currentAuthState.displayName}>
+				<NavBarLink text='Home' href={ROUTES.INDEX} />
+				<NavBarLink text='Projects' href={ROUTES.PROJECTS} />
+				<NavBarLink text='Profile' href={ROUTES.PROFILE} />
+				{displayName ? (
+					<UserDropdown displayName={displayName}>
 						<DropdownItem text='Action' />
 						<DropdownItem text='Another' />
 						<DropdownItem text='Something' />

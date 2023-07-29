@@ -1,3 +1,4 @@
+import { ROUTES } from "@config/browser-routes.config";
 import { InputType } from "artisticolor/profile-box";
 
 export default function InputWrap({ type }: InputType) {
@@ -25,11 +26,11 @@ export default function InputWrap({ type }: InputType) {
             }
             {
                 type === 'Email' ? ( //type = 'Email'
-                    <img id="emIcon" src="./icons/email.png" height="22px" />
+                    <img id="emIcon" src={`${ROUTES.ICONS}/email.png`} height="22px" />
                 ) : type === 'Username' ? ( //type = 'Username'
-                    <img id="urIcon" src="./icons/user.png" height="22px" />
+                    <img id="urIcon" src={`${ROUTES.ICONS}/user.png`} height="22px" />
                 ) : ( //type = 'Password'
-                    <img id="pdIcon" src="./icons/closedEye.png" height="22px" />
+                    <img id="pdIcon" src={`${ROUTES.ICONS}/closedEye.png`} height="22px" />
                 )
             }
         </div>
