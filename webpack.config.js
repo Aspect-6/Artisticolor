@@ -17,9 +17,9 @@ module.exports = {
     },
 
     entry: {
-        index: ['./src/index', './src/app/index', './src/components/functions/login', './src/ts/index'],
-        profile: ['./src/index', './src/app/profile', './src/components/functions/login', './src/ts/profile'],
-        projects: ['./src/index', './src/app/projects', './src/components/functions/login', './src/ts/projects'],
+        index: ['./src/index', './src/app/index', './src/ts/index'],
+        profile: ['./src/index', './src/app/profile', './src/ts/profile'],
+        projects: ['./src/index', './src/app/projects', './src/ts/projects'],
         register: ['./src/index', './src/app/register', './src/ts/register'],
     },
     //Output files to a dist folder
@@ -66,7 +66,7 @@ module.exports = {
             patterns: [{
                 from: 'src/assets/',
                 globOptions: {
-                    ignore: ['**/styles', '**/.DS_Store']
+                    ignore: ['**/styles', '**/images', '**/.DS_Store']
                 },
             }]
         }),
