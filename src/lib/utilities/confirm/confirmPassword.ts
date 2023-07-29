@@ -1,10 +1,12 @@
+import { ROUTES } from "@config/browser-routes.config";
+
 module.exports = function(decryptPassword: any, pd: HTMLImageElement, coverDiv: HTMLDivElement) {
     const getElement = require('@utils/shorten/getElement')
     decryptPassword.then((password: string | number) => {
         //If user confirms with correct password, display password and show open eye
         if (getElement('passwordPrompt').value == password) {
             //Show password and set eye image to open
-            pd.setAttribute('src', '/icons/openEye.png');
+            pd.setAttribute('src', `${ROUTES.ICONS}/openEye.png`);
             getElement('Passwd').setAttribute('type', 'text');
 
             //Remove password prompt
