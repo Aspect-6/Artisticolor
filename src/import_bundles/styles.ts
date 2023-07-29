@@ -7,24 +7,20 @@ module.exports = {
 	index: {
 		...bootstrap,
 		...require('@styles/index.scss'),
-		...require('@styles/lgnregBox.scss'),
 		...require('@styles/nav.scss'),
 	},
 	profile: {
 		...bootstrap,
 		...require('@styles/profile.scss'),
-		...require('@styles/lgnregBox.scss'),
 		...require('@styles/nav.scss'),
 	},
 	projects: {
 		...bootstrap,
 		...require('@styles/projects.scss'),
-		...require('@styles/lgnregBox.scss'),
 		...require('@styles/nav.scss'),
 	},
 	register: {
 		...bootstrap,
 		...require('@styles/register.scss'),
-		...require('@styles/lgnregBox.scss'),
 	},
 }
