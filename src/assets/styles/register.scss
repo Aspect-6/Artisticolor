@@ -1,4 +1,20 @@
 body {
-    // background: url(../images/back.png);
-    background-size: cover;
+	background: #0d6efd;
+	overflow-x: scroll;
+}
+
+.register-div {
+	height: fit-content !important;
+	@media screen and (max-height: 555px) {
+		max-height: fit-content;
+		overflow-x: scroll;
+	}
+    @media screen and (max-width: 575px) {
+        .register-title {
+			margin-top: 1.25rem !important;
+		}
+		.already-signed-up {
+			margin-bottom: 1.25rem !important;
+		}
+    }
 }
