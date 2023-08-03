@@ -1,4 +1,4 @@
-export default function ToggleButton() {
+export default function ToggleFormButton() {
 	return (
 		<button
 			type='button'
