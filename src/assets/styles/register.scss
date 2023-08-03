@@ -9,12 +9,19 @@ body {
 		max-height: fit-content;
 		overflow-x: scroll;
 	}
-    @media screen and (max-width: 575px) {
-        .register-title {
+	@media screen and (max-width: 575px) {
+		.register-title {
 			margin-top: 1.25rem !important;
 		}
 		.already-signed-up {
 			margin-bottom: 1.25rem !important;
 		}
-    }
+	}
+}
+
+.form-control.is-valid:focus,
+.was-validated :valid.form-control {
+	border-color: inherit !important;
+	background-image: inherit !important;
+	box-shadow: inherit !important;
 }

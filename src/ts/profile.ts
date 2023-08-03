@@ -1,3 +1,4 @@
+import { ROUTES } from '@config/browser-routes.config'
 import { auth, onAuthStateChanged, signOut } from '@lib/functions/auth'
 
 onAuthStateChanged(auth, (userData) => {
@@ -6,7 +7,7 @@ onAuthStateChanged(auth, (userData) => {
 
 		getElement('logout').addEventListener('click', () =>
 			//Detect and sign out user
-			signOut(auth).then(() => location.href = 'index.html')
+			signOut(auth).then(() => (location.href = ROUTES.INDEX))
 		)
 
 		//Decrypt user password
@@ -39,7 +40,7 @@ onAuthStateChanged(auth, (userData) => {
 
 		//Add event listener to password icon
 		pd.addEventListener('click', () => {
-			if (pd.src === 'http://localhost:8000/icons/closedEye.png') {
+			if (pd.src === `${ROUTES.ICONS}/closedEye.png`) {
 				//Show the password confirmation prompt
 				getElement('passwordPromptDiv').style.transform = 'scale(1)'
 
@@ -67,7 +68,7 @@ onAuthStateChanged(auth, (userData) => {
 				})
 			} else {
 				//If eye image is open, change to closed and hide password
-				pd.setAttribute('src', './icons/closedEye.png')
+				pd.setAttribute('src', `${ROUTES.ICONS}/closedEye.png`)
 				getElement('Passwd').setAttribute('type', 'password')
 				return
 			}
@@ -80,4 +81,4 @@ onAuthStateChanged(auth, (userData) => {
 })
 
 // Load styles
-require('@import_bundles/styles').profile
+require('@import_bundles/styles/profile')

@@ -6,4 +6,4 @@ getElement('makeProjectBtn').addEventListener('click', () => {
 })
 
 //Load styles
-require('@import_bundles/styles').projects
+require('@import_bundles/styles/projects')

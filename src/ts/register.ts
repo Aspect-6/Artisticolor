@@ -1,34 +1,31 @@
-//@ts-expect-error
-import { getElement } from '@utils/shorten/getElement'
+// // Show register box
+// document.getElementById('login-box').style.transition = '0s'
+// document.getElementById('login-box').style.transform = 'scale(1)'
+// document.getElementById('login-box').style.top = '0px'
 
-//Show register box
-getElement('login-box').style.transition = '0s'
-getElement('login-box').style.transform = 'scale(1)'
-getElement('login-box').style.top = '0px'
+// //Get email, username, and password boxes
+// const email = <HTMLInputElement>document.getElementById('email')
+// const username = <HTMLInputElement>document.getElementById('username')
+// const password = <HTMLInputElement>document.getElementById('password')
 
-//Get email, username, and password boxes
-const email = getElement('email')
-const username = getElement('username')
-const password = getElement('password')
+// document.getElementById('submit').addEventListener('click', () => {
+// 	//Get message element
+// 	const message = document.getElementById('message')
 
-getElement('submit').addEventListener('click', () => {
-	//Get message element
-	const message = getElement('message')
+// 	//Check for blank inputs
+// 	if (email.value == '' || username.value == '' || password.value == '')
+// 		return
 
-	//Check for blank inputs
-	if (email.value == '' || username.value == '' || password.value == '')
-		return
+// 	//Check if username > 15 characters
+// 	if (username.value.length > 10) {
+// 		message.innerHTML = 'Username cannot exceed 10 characters'
+// 		return
+// 	}
 
-	//Check if username > 15 characters
-	if (username.value.length > 10) {
-		message.innerHTML = 'Username cannot exceed 10 characters'
-		return
-	}
-
-	//@ts-expect-error | Create a user and add user to database
-	user.createUser(auth, email, username, password)
-})
-require('@anim/register/box').addListeners()
+// 	//@ts-expect-error | Create a user and add user to database
+// 	user.createUser(auth, email, username, password)
+// })
+// require('@anim/register/box').addListeners()
 
 //Load styles
-require('@import_bundles/styles').register
+require('@import_bundles/styles/register')

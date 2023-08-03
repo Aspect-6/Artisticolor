@@ -10,5 +10,5 @@ module.exports = {
 for (const key in module.exports) global[key] = module.exports[key];
 
 if (!location.href.includes('register')) {
-    document.body.style.background = 'none'
+    // document.body.style.background = 'none'
 } //console.log('true')
