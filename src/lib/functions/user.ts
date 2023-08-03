@@ -1,3 +1,4 @@
+import { ROUTES } from '@config/browser-routes.config'
 import {
 	auth,
 	createUserWithEmailAndPassword,
@@ -6,32 +7,29 @@ import {
 	signOut,
 	updateProfile,
 } from './auth'
+import Crypto from './crypto'
 import { db, get, ref, set } from './database'
 
-interface userType {
-	email: HTMLInputElement
-	username: HTMLInputElement
-	password: HTMLInputElement
-}
-
 export default {
-	createUser({ email, username, password }: userType) {
-		createUserWithEmailAndPassword(auth, email.value, password.value)
+	createUser(
+		email: string,
+		username: string,
+		password: string,
+		setFormError: React.Dispatch<React.SetStateAction<string>>
+	) {
+		return createUserWithEmailAndPassword(auth, email, password)
 			.then((userCredential) => {
 				const user = userCredential.user
 
-				const KEY = require('./crypto').generateKey()
+				const KEY = Crypto.generateKey()
 
 				//Encrypt user data
-				const encryptedData = require('./crypto').encrypt(
-					[email.value, username.value, password.value],
-					KEY
-				)
+				const encryptedData = Crypto.encrypt([email, username, password], KEY)
 
-				// Set user displayName and photoURL
+				// Set user displayName and default photoURL
 				updateProfile(user, {
-					displayName: username.value,
-					photoURL: 'http://localhost:8000/icons/usercon.png',
+					displayName: username,
+					photoURL: `${ROUTES.ICONS}/usercon.png`,
 				})
 
 				// Add encrypted data to database along with key
@@ -43,33 +41,27 @@ export default {
 				})
 
 				//Redirect
-				location.href = './profile.html'
+				location.href = ROUTES.INDEX
 			})
 			.catch((error) => {
-				const errorcode = error.code
-
-				if (errorcode == 'auth/invalid-email') {
-					document.getElementById('message').innerHTML =
-						'Please enter a valid email'
-					require('@error/shake')(email)
+				// if (errorcode == 'auth/invalid-email') {
+				// 	document.getElementById('message').innerHTML =
+				// 		'Please enter a valid email'
+				// }
+				if (error.code == 'auth/email-already-in-use') {
+					setFormError('Email is already in use')
 				}
-				if (errorcode == 'auth/email-already-in-use') {
-					document.getElementById('message').innerHTML =
-						'Email is currently in use'
-					require('@error/shake')(email)
+				if (error.code == 'auth/weak-password') {
+					setFormError('Password should be at least 6 characters')
 				}
-				if (errorcode == 'auth/weak-password') {
-					document.getElementById('message').innerHTML =
-						'Password should be at least 6 characters'
-					require('@error/shake')(password)
-				}
+				return error.code
 			})
 	},
 	signIn(email: string, password: string) {
 		return signInWithEmailAndPassword(auth, email, password).catch(() => 'error')
 	},
 	signOut() {
-		signOut(auth).then(() => (location.href = 'index.html'))
+		signOut(auth).then(() => (location.href = ROUTES.INDEX))
 	},
 
 	async decryptCredentials(uid: string) {
