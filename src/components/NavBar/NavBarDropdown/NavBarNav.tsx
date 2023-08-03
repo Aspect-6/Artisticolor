@@ -1,9 +1,12 @@
+import Form from '@components/Form/Form'
 import { ROUTES } from '@config/browser-routes.config'
 import useDisplayName from '@hooks/useDisplayname'
-import LoginForm from './LoginDropdown/Form'
+import user from '@lib/functions/user'
+import { useRef, useState } from 'react'
+import LoginDropdown from '../../Dropdowns/LoginDropdown'
+import Divider from '../../Misc/Divider'
 import NavBarLink from './NavBarLink'
 import ToggleFormBtn from './ToggleFormBtn'
-import Divider from './UserDropdown/Divider'
 import DropdownItem from './UserDropdown/DropdownItem'
 import UserDropdown from './UserDropdown/UserDropdown'
 
@@ -15,25 +18,22 @@ export default function NavBarNav({ ...props }: NavBarNavProps) {
 	return (
 		<div {...props}>
 			<ul className='navbar-nav'>
-				<NavBarLink text='Home' href={ROUTES.INDEX} />
-				<NavBarLink text='Projects' href={ROUTES.PROJECTS} />
-				<NavBarLink text='Profile' href={ROUTES.PROFILE} />
+				<NavBarLink href={ROUTES.INDEX}>Home</NavBarLink>
+				<NavBarLink href={ROUTES.PROJECTS}>Projects</NavBarLink>
+				<NavBarLink href={ROUTES.PROFILE}>Profile</NavBarLink>
 				{displayName ? (
 					<UserDropdown displayName={displayName}>
-						<DropdownItem text='Action' />
-						<DropdownItem text='Another' />
-						<DropdownItem text='Something' />
+						<DropdownItem>Action</DropdownItem>
+						<DropdownItem>Another</DropdownItem>
+						<DropdownItem>Something</DropdownItem>
 						<Divider />
-						<DropdownItem text='Separated Link' />
+						<DropdownItem onClick={user.signOut}>Sign Out</DropdownItem>
 					</UserDropdown>
 				) : (
 					<>
 						<ToggleFormBtn />
 						<div className='dropdown'>
-							<LoginForm
-								className='dropdown-menu dropdown-menu-end p-3 bg-body-secondary'
-								style={{ minWidth: '250px' }}
-							/>
+							<LoginDropdown />
 						</div>
 					</>
 				)}
