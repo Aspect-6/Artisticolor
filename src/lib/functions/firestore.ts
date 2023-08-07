@@ -1,6 +1,6 @@
-import { getFirestore } from '@firebase/firestore/lite'
-import { app } from './app'
+import { getFirestore } from "@firebase/firestore/lite"
+import { app } from "./app"
 
-export const fdb = getFirestore(app)
+export const db = getFirestore(app)
 
-export { collection, addDoc, getDoc, getDocs, setDoc, doc } from '@firebase/firestore/lite'
+export { collection, getDoc, setDoc, doc, DocumentData, DocumentReference } from "@firebase/firestore/lite"
