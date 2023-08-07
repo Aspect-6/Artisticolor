@@ -10,4 +10,4 @@ interface FirestoreUser {
 /**
  * Keys of `FirestoreUser` interface allowed to be decrypted with `Crypto.decrypt()` utility function
  */
-type FirestoreUserValidKeys = Omit<FirestoreUser, "key">
+type FirestoreUserValidKeys = keyof Omit<FirestoreUser, "key">

@@ -68,9 +68,10 @@ export default {
             })
     },
     /**
+     * Sign in user with inputted email and password
      * @param email - Email submitted by user in an attempt to sign in
      * @param password - Password submitted by user in an attempt to sign in
-     * @returns User information or "error" if there was an error
+     * @returns `UserCredential` or **`error`** if there was an error
      */
     async signIn(email: string, password: string) {
         return await signInWithEmailAndPassword(auth, email, password).catch(
@@ -88,7 +89,7 @@ export default {
      */
     async decryptCredentials(
         userDoc: DocumentReference<DocumentData, DocumentData>,
-        fields: (keyof FirestoreUserValidKeys)[]
+        fields: FirestoreUserValidKeys[]
     ) {
         const data = <FirestoreUser>(
             await getDoc(userDoc).then(({ data }) => data())
