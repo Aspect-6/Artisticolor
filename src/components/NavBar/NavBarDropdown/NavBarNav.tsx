@@ -13,7 +13,7 @@ import UserDropdown from './UserDropdown/UserDropdown'
 interface NavBarNavProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 export default function NavBarNav({ ...props }: NavBarNavProps) {
-	const { displayName } = useDisplayName()
+	const displayName = useDisplayName()
 
 	return (
 		<div {...props}>
