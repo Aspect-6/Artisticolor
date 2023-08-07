@@ -1,13 +1,16 @@
 import { ROUTES } from "@config/browser-routes.config"
-import { auth, createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword, signOut, updateProfile } from "./auth"
+import { auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut as _signOut, updateProfile } from "./auth"
 import Crypto from "./crypto"
-import { db, get, ref, set } from "./database"
-
-import { fdb, setDoc, doc } from "./firestore"
+import { db, setDoc, doc, getDoc, DocumentData, DocumentReference } from "./firestore"
 
 export default {
-    createUser(email: string, username: string, password: string, setFormError: React.Dispatch<React.SetStateAction<string>>) {
-        return createUserWithEmailAndPassword(auth, email, password)
+    /**
+     * @params `email`, `username`, and `password` is submitted by user in an attempt to create an account
+     * @param setFormError - React setState function to set the error message of the form to display error message
+     * @returns A promise containing any error that might have occured
+     */
+    async createUser(email: string, username: string, password: string, setFormError: React.Dispatch<React.SetStateAction<string>>): Promise<string> {
+        return await createUserWithEmailAndPassword(auth, email, password)
             .then(async (userCredential) => {
                 const user = userCredential.user
 
@@ -28,8 +31,8 @@ export default {
                     displayName: username,
                     photoURL: `${ROUTES.ICONS}/usercon.png`,
                 })
-                const userDoc = doc(fdb, "Users", `${user.uid}`)
-  
+                const userDoc = doc(db, "Users", `${user.uid}`)
+
                 await setDoc(userDoc, userData)
 
                 location.href = ROUTES.INDEX
@@ -44,15 +47,27 @@ export default {
                 return error.code
             })
     },
-    signIn(email: string, password: string) {
-        return signInWithEmailAndPassword(auth, email, password).catch(() => "error")
+    /**
+     * @param email - Email submitted by user in an attempt to sign in
+     * @param password - Password submitted by user in an attempt to sign in
+     * @returns User information or "error" if there was an error
+     */
+    async signIn(email: string, password: string) {
+        return await signInWithEmailAndPassword(auth, email, password).catch(() => "error")
     },
+    /** Signs out user and redirects them to homepage */
     signOut() {
-        signOut(auth).then(() => (location.href = ROUTES.INDEX))
+        _signOut(auth).then(() => (location.href = ROUTES.INDEX))
     },
-
-    async decryptCredentials(uid: string) {
-        //require('./firebase').getData(uid)
-        return [(await get(ref(db, `Users/${uid}/Password`))).val(), (await get(ref(db, `Users/${uid}/Key`))).val()]
+    /**
+     * @param userDoc - Firestore user document reference path constructed of Users/uid
+     * @param fields - All keys of the `FirestoreUser` interface allowed to be decrypted with `Crypto.decrypt()`
+     * @returns Promise containing array of objects with the decrypted values of the keys passed in
+     */
+    async decryptCredentials(userDoc: DocumentReference<DocumentData, DocumentData>, fields: (keyof FirestoreUserValidKeys)[]) {
+        const data = <FirestoreUser>await getDoc(userDoc).then(({ data }) => data())
+        return fields.map((field) => {
+            return { [field]: Crypto.decrypt(data[field], data.key) }
+        })
     },
 }
