@@ -3,7 +3,7 @@ import { ROUTES } from '@config/browser-routes.config'
 import useFormError from '@hooks/useFormError'
 import user from '@lib/functions/user'
 import { useRef, useState } from 'react'
-import Divider from '../Misc/Divider'
+import Divider from '../../Misc/Divider'
 
 interface LoginDropdownProps {}
 
