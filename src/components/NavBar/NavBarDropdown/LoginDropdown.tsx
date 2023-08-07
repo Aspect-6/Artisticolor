@@ -59,7 +59,7 @@ export default function LoginDropdown({}: LoginDropdownProps) {
 				<Form.FieldError>Please enter a valid password</Form.FieldError>
 			</Form.Field>
 			{/* Error Message */}
-			<Form.Error className='mb-2 visually-hidden text-center' Ref={errorRef}>
+			<Form.Error className='mb-2 visually-hidden text-center' ref={errorRef}>
 				Incorrect email or password
 			</Form.Error>
 			{/* Sign in button */}

@@ -81,7 +81,7 @@ export default function RegisterForm({}: RegisterFormProps) {
 				</Form.Field>
 
 				{/* Register error message display */}
-				<Form.Error className='mb-3 visually-hidden text-center' Ref={errorRef}>
+				<Form.Error className='mb-3 visually-hidden text-center' ref={errorRef}>
 					{formError}
 				</Form.Error>
 				{/* Form submit button */}

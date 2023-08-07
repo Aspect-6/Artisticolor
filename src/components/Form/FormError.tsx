@@ -1,12 +1,13 @@
+import { forwardRef } from "react"
+
 interface FormErrorProps extends React.HTMLAttributes<HTMLDivElement> {
 	children: React.ReactNode
-	Ref: React.MutableRefObject<HTMLDivElement>
 }
 
-export default function FormError({ children, Ref, ...props }: FormErrorProps) {
+export default forwardRef(function FormError({ children, ...props }: FormErrorProps) {
 	return (
-		<div ref={Ref} style={{ color: '#dc3545' }} {...props}>
+		<div style={{ color: '#dc3545' }} {...props}>
 			{children}
 		</div>
 	)
-}
+})
