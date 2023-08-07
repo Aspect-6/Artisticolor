@@ -100,6 +100,7 @@ export default function Form({ children, Ref, ...props }: FormProps) {
 		</form>
 	)
 }
+export * from './functions'
 
 Form.Title = FormTitle
 Form.Field = FormField
