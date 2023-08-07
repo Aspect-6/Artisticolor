@@ -1,13 +1,12 @@
-interface FieldInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
-	Ref?: React.MutableRefObject<HTMLInputElement>
-}
+import { forwardRef } from "react"
 
-export default function FieldInput({ Ref, ...props }: FieldInputProps) {
+interface FieldInputProps extends React.InputHTMLAttributes<HTMLInputElement> {}
+
+export default forwardRef(function FieldInput({ ...props }: FieldInputProps) {
 	return (
 		<input
-			ref={Ref}
 			{...props}
 			className={'form-control '.concat(props.className)}
 		/>
 	)
-}
+})

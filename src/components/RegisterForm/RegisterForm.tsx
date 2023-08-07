@@ -44,7 +44,7 @@ export default function RegisterForm({}: RegisterFormProps) {
 						type='email'
 						id='formEmail'
 						placeholder='email@example.com'
-						Ref={emailRef}
+						ref={emailRef}
 						value={email}
 						onChange={(e) => setEmail(e.target.value)}
 						required
@@ -58,7 +58,7 @@ export default function RegisterForm({}: RegisterFormProps) {
 						type='text'
 						id='formUsername'
 						placeholder='Username'
-						Ref={usernameRef}
+						ref={usernameRef}
 						value={username}
 						onChange={(e) => setUsername(e.target.value)}
 						required
@@ -72,7 +72,7 @@ export default function RegisterForm({}: RegisterFormProps) {
 						type='password'
 						id='formPassword'
 						placeholder='Password'
-						Ref={passwordRef}
+						ref={passwordRef}
 						value={password}
 						onChange={(e) => setPassword(e.target.value)}
 						required

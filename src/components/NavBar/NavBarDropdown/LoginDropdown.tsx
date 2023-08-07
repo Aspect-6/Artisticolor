@@ -38,7 +38,7 @@ export default function LoginDropdown({}: LoginDropdownProps) {
 					id='formEmail'
 					value={email}
 					onChange={(e) => setEmail(e.target.value)}
-					Ref={emailRef}
+					ref={emailRef}
 					placeholder='email@example.com'
 					required
 				/>
@@ -52,7 +52,7 @@ export default function LoginDropdown({}: LoginDropdownProps) {
 					id='formPassword'
 					value={password}
 					onChange={(e) => setPassword(e.target.value)}
-					Ref={passwordRef}
+					ref={passwordRef}
 					placeholder='Password'
 					required
 				/>
