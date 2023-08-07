@@ -1,16 +1,15 @@
 import { ROUTES } from "@config/browser-routes.config"
 import {
     signOut as _signOut,
-    auth,
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
     updateProfile,
 } from "./auth"
 import Crypto from "./crypto"
+import { auth, db } from "./firebase"
 import {
     DocumentData,
     DocumentReference,
-    db,
     doc,
     getDoc,
     setDoc,
