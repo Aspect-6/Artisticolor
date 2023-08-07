@@ -1,6 +1,5 @@
-import Form from '@components/Form/Form'
+import Form, {testFormError} from '@components/Form/Form'
 import { ROUTES } from '@config/browser-routes.config'
-import useFormError from '@hooks/useFormError'
 import user from '@lib/functions/user'
 import { useRef, useState } from 'react'
 import Divider from '../../Misc/Divider'
@@ -20,7 +19,7 @@ export default function LoginDropdown({}: LoginDropdownProps) {
 		formRef.current.classList.add('was-validated')
 
 		user.signIn(email, password).then((e) => {
-			useFormError({ e, email, password, errorRef })
+			testFormError({ e, email, password, errorRef })
 		})
 	}
 

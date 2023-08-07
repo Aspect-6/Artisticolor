@@ -1,6 +1,5 @@
-import Form from '@components/Form/Form'
+import Form, { testFormError } from '@components/Form/Form'
 import { ROUTES } from '@config/browser-routes.config'
-import useFormError from '@hooks/useFormError'
 import user from '@lib/functions/user'
 import { useRef, useState } from 'react'
 
@@ -26,14 +25,7 @@ export default function RegisterForm({}: RegisterFormProps) {
 
 		const isError = user.createUser(email, username, password, setFormError)
 		isError.then((e) => {
-			// if (!e || email == '' || username == '' || password == '') {
-			// 	if (!errorRef.current.className.includes('visually-hidden')) {
-			// 		errorRef.current.classList.add('visually-hidden')
-			// 	}
-			// 	return
-			// }
-			// errorRef.current.classList.remove('visually-hidden')
-			useFormError({ e, email, username, password, errorRef })
+			testFormError({ e, email, username, password, errorRef })
 		})
 	}
 
