@@ -21,11 +21,13 @@ export default {
      * @returns Randomly generated string of numbers and letters to encrypt and decrypt data
      */
     generateKey(): string {
-        const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
+        const chars =
+            "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
         const charsLen = chars.length
         const randlen = Math.floor(Math.random() * 15 + 10)
         let result = " "
-        for (let i = 0; i < randlen; i++) result += chars.charAt(Math.floor(Math.random() * charsLen))
+        for (let i = 0; i < randlen; i++)
+            result += chars.charAt(Math.floor(Math.random() * charsLen))
         return result
     },
 }

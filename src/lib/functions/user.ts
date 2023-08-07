@@ -1,7 +1,20 @@
 import { ROUTES } from "@config/browser-routes.config"
-import { auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut as _signOut, updateProfile } from "./auth"
+import {
+    signOut as _signOut,
+    auth,
+    createUserWithEmailAndPassword,
+    signInWithEmailAndPassword,
+    updateProfile,
+} from "./auth"
 import Crypto from "./crypto"
-import { db, setDoc, doc, getDoc, DocumentData, DocumentReference } from "./firestore"
+import {
+    DocumentData,
+    DocumentReference,
+    db,
+    doc,
+    getDoc,
+    setDoc,
+} from "./firestore"
 
 export default {
     /**
@@ -9,7 +22,12 @@ export default {
      * @param setFormError - React setState function to set the error message of the form to display error message
      * @returns A promise containing any error that might have occured
      */
-    async createUser(email: string, username: string, password: string, setFormError: React.Dispatch<React.SetStateAction<string>>): Promise<string> {
+    async createUser(
+        email: string,
+        username: string,
+        password: string,
+        setFormError: React.Dispatch<React.SetStateAction<string>>
+    ): Promise<string> {
         return await createUserWithEmailAndPassword(auth, email, password)
             .then(async (userCredential) => {
                 const user = userCredential.user
@@ -17,7 +35,10 @@ export default {
                 const KEY = Crypto.generateKey()
 
                 //Encrypt user data
-                const encryptedData = Crypto.encrypt([email, username, password], KEY)
+                const encryptedData = Crypto.encrypt(
+                    [email, username, password],
+                    KEY
+                )
 
                 const userData: FirestoreUser = {
                     email: encryptedData[0],
@@ -53,7 +74,9 @@ export default {
      * @returns User information or "error" if there was an error
      */
     async signIn(email: string, password: string) {
-        return await signInWithEmailAndPassword(auth, email, password).catch(() => "error")
+        return await signInWithEmailAndPassword(auth, email, password).catch(
+            () => "error"
+        )
     },
     /** Signs out user and redirects them to homepage */
     signOut() {
@@ -64,8 +87,13 @@ export default {
      * @param fields - All keys of the `FirestoreUser` interface allowed to be decrypted with `Crypto.decrypt()`
      * @returns Promise containing array of objects with the decrypted values of the keys passed in
      */
-    async decryptCredentials(userDoc: DocumentReference<DocumentData, DocumentData>, fields: (keyof FirestoreUserValidKeys)[]) {
-        const data = <FirestoreUser>await getDoc(userDoc).then(({ data }) => data())
+    async decryptCredentials(
+        userDoc: DocumentReference<DocumentData, DocumentData>,
+        fields: (keyof FirestoreUserValidKeys)[]
+    ) {
+        const data = <FirestoreUser>(
+            await getDoc(userDoc).then(({ data }) => data())
+        )
         return fields.map((field) => {
             return { [field]: Crypto.decrypt(data[field], data.key) }
         })
