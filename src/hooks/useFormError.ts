@@ -9,11 +9,11 @@ interface useFormErrorProps {
 }
 
 export default function useFormError({ e, email, username, password, errorRef }: useFormErrorProps) {
-    if (!e || email == '' || username == '' || password == '') {
-        if (!errorRef.current.className.includes('visually-hidden')) {
-            errorRef.current.classList.add('visually-hidden')
+    if (!e || email == "" || username == "" || password == "") {
+        if (!errorRef.current.className.includes("visually-hidden")) {
+            errorRef.current.classList.add("visually-hidden")
         }
         return
     }
-    errorRef.current.classList.remove('visually-hidden')
+    errorRef.current.classList.remove("visually-hidden")
 }
