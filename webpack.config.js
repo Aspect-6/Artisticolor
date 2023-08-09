@@ -17,10 +17,10 @@ module.exports = {
     },
 
     entry: {
-        index: ['./src/index', './src/app/index', './src/ts/index'],
-        profile: ['./src/index', './src/app/profile', './src/ts/profile'],
-        projects: ['./src/index', './src/app/projects', './src/ts/projects'],
-        register: ['./src/index', './src/app/register', './src/ts/register'],
+        index: ['./src/app/index', './src/ts/index'],
+        profile: ['./src/app/profile', './src/ts/profile'],
+        projects: ['./src/app/projects', './src/ts/projects'],
+        register: ['./src/app/register', './src/ts/register'],
     },
     //Output files to a dist folder
     output: {
