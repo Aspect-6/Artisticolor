@@ -19,6 +19,16 @@ body {
 	}
 }
 
+.col-sm-8 {
+	max-width: 410px;
+}
+.col-md-6 {
+	max-width: 450px;
+}
+.col-lg-4 {
+	min-width: 365px;
+}
+
 .form-control.is-valid:focus,
 .was-validated :valid.form-control {
 	border-color: inherit !important;
