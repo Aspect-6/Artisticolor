@@ -17,9 +17,10 @@ import {
 
 export default {
     /**
+     * Creates a user to store in firestore with inputted email and password
      * @params `email`, `username`, and `password` is submitted by user in an attempt to create an account
      * @param setFormError - React setState function to set the error message of the form to display error message
-     * @returns A promise containing any error that might have occured
+     * @returns A promise containing user credentials or any error that might have occured
      */
     async createUser(
         email: string,
@@ -51,7 +52,7 @@ export default {
                     displayName: username,
                     photoURL: `${ROUTES.ICONS}/usercon.png`,
                 })
-                const userDoc = doc(db, "Users", `${user.uid}`)
+                const userDoc = doc(db, `Users${user.uid}`)
 
                 await setDoc(userDoc, userData)
 

@@ -19,7 +19,9 @@ export default function RegisterForm({}: RegisterFormProps) {
     const formRef = useRef<HTMLFormElement>()
     const errorRef = useRef<HTMLDivElement>()
 
-    // Attempts to create user and shows any errors if any occur
+    /**
+	 * Attempts to create user and visualizes any errors if any occur
+	 */
     const handleSubmit = () => {
         formRef.current.classList.add("was-validated")
 
@@ -31,7 +33,7 @@ export default function RegisterForm({}: RegisterFormProps) {
 
     return (
         <div
-            className='position-absolute top-50 start-50 translate-middle m-auto col-10 col-sm-8 col-md-6 col-lg-4 register-div p-sm-2 p-md-3 rounded bg-light'
+            className='position-absolute top-50 start-50 translate-middle m-auto col-10 col-sm-8 col-md-6 col-lg-4 register-div p-2 p-sm-3 rounded bg-light'
             data-bs-theme='light'
         >
             <Form
