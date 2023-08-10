@@ -80,5 +80,5 @@
 // 	}
 // })
 
-// // Load styles
-// require('@import_bundles/styles/profile')
+// Load styles
+require('@import_bundles/styles/profile')
