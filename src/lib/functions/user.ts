@@ -52,8 +52,7 @@ export default {
                     displayName: username,
                     photoURL: `${ROUTES.ICONS}/usercon.png`,
                 })
-                const userDoc = doc(db, `Users${user.uid}`)
-
+                const userDoc = doc(db, `Users/${user.uid}`)
                 await setDoc(userDoc, userData)
 
                 location.href = ROUTES.INDEX
@@ -93,10 +92,12 @@ export default {
         fields: FirestoreUserValidKeys[]
     ) {
         const data = <FirestoreUser>(
-            await getDoc(userDoc).then(({ data }) => data())
+            await getDoc(userDoc).then((user) => user.data())
         )
-        return fields.map((field) => {
-            return { [field]: Crypto.decrypt(data[field], data.key) }
+        const returnData: Partial<{[key in FirestoreUserValidKeys]: string}> = {}
+        fields.map((field) => {
+            returnData[field] = Crypto.decrypt(data[field], data.key)
         })
+        return returnData
     },
 }
