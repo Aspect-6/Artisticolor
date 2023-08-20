@@ -1,6 +1,6 @@
 import useLogin from "./useLogin"
 
-export default function useDisplayName() {
+export default function useUID() {
     const user = useLogin()
     return user ? user.uid : ""
 }
