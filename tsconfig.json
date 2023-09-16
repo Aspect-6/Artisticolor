@@ -13,15 +13,13 @@
             "@components/*": ["components/*"],
             "@hooks/*": ["hooks/*"],
             "@config/*": ["config/*"],
-            "@ts/*": ["ts/*"],
-            "@import_bundles/*": ["import_bundles/*"],
+            "@pages/*": ["pages/*"],
             "@styles/*": ["assets/styles/*"],
             // All folder under lib/
             "@lib/*": ["lib/*"],
             "@utils/*": ["lib/utilities/*"],
             "@anim/*": ["lib/utilities/anim/*"],
             "@error/*": ["lib/utilities/anim/error/*"],
-            "@firebase/*": ["lib/utilities/firebase/*"],
         }
 	}
 }
