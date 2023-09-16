@@ -1,11 +1,11 @@
-import FormTitle from "@components/Form/FormTitle"
-import FormBtn from "./FormBtn"
-import FormError from "./FormError"
-import FieldError from "./FormField/FieldError"
-import FieldInput from "./FormField/FieldInput"
-import FieldLabel from "./FormField/FieldLabel"
-import FormField from "./FormField/FormField"
-import FormRedirect from "./FormRedirect"
+import FormTitle from "@components/form/form-title"
+import FormBtn from "./form-btn"
+import FormError from "./form-error"
+import FormField from "./form-field"
+import FieldError from "./form-field/field-error"
+import FieldInput from "./form-field/field-input"
+import FieldLabel from "./form-field/field-label"
+import FormRedirect from "./form-redirect"
 
 interface FormProps extends React.FormHTMLAttributes<HTMLFormElement> {
     children: React.ReactNode
@@ -20,7 +20,7 @@ export default function Form({ children, Ref, ...props }: FormProps) {
     )
 }
 
-export * from "./functions"
+export * from "./utils"
 
 Form.Title = FormTitle
 Form.Field = FormField

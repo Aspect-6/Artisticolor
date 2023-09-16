@@ -1,6 +1,6 @@
-import ModalBody from "./ModalBody"
-import ModalFooter from "./ModalFooter"
-import ModalHeader from "./ModalHeader"
+import ModalBody from "./modal-body"
+import ModalFooter from "./modal-footer"
+import ModalHeader from "./modal-header"
 
 interface Modal extends React.HTMLAttributes<HTMLDivElement> {
     children: React.ReactNode
