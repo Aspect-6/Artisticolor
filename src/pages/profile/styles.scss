@@ -1,0 +1,153 @@
+h1 {
+    color: rgba(175, 0, 215, 0.751);
+}
+$accBoxHeight: 500px;
+
+.accountBox {
+    text-align: center;
+    position: fixed;
+    top: max(50%, 425px);
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: linear-gradient(45deg, #dbdbdb, #DCCFEC);
+    width: 500px;
+    min-height: $accBoxHeight;
+    max-height: $accBoxHeight;
+    border-radius: 20px;
+    padding: 10px;
+    z-index: 1;
+    #header {
+        font-size: 2.5em;
+        color: rgba(175, 0, 215, 0.751);
+        margin-bottom: 60px;
+    }
+    div {
+        .dataElements {
+            position: relative;
+            margin-top: 35px;
+            font-size: large;
+            text-align: center;
+            background-color: lightgray;
+            border: none;
+            border-bottom: rgb(183, 161, 101) solid 3px;
+            background: transparent;
+            &:focus {
+                outline: none;
+            }
+        }
+        .labels {
+            color: #4C5454;
+            font-size: larger;
+        }
+        #Email {
+            width: 260px;
+        }
+        #Username {
+            width: 222px;
+        }
+        #Password {
+            width: 225px;
+        }
+    }
+    #logout {
+        margin-top: 40px;
+        width: 120px;
+        height: 35px;
+        border-radius: 18px;
+        background-color: rgb(200, 200, 200);
+        font-size: 20px;
+        &:hover {
+            background-color: rgb(180, 180, 180);
+            transition: 0.2s;
+        }
+    }
+}
+
+#profilePhoto {
+    height: 130px;
+    width: 130px;
+    margin: auto;
+    margin-bottom: -40px;
+}
+#cover {
+    position: absolute;
+    height: 110%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background-color: black;
+    z-index: 3;
+    opacity: 0.4;
+}
+
+#pdIcon {
+    transform: scale(1);
+    transition: 0.3s;
+    &:hover {
+        transform: scale(1.2);
+    }
+}
+
+#passwordPromptDiv {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    background-color: #c4c4c4;
+    height: 100px;
+    width: 300px;
+    text-align: center;
+    border-radius: 5px;
+    transform: scale(0);
+    transition: 0.1s;
+    z-index: 4;
+    padding: 10px;
+    #passwordPrompt {
+        width: 220px;
+        height: 20px;
+        text-align: center;
+    }
+    #passwordClose {
+        position: absolute;
+        top: 0;
+        left: 250px;
+        right: 0;
+        bottom: 70px;
+        margin: auto;
+        background: transparent;
+        border: none;
+    }
+    #promptMessage {
+        color: rgb(234, 3, 3);
+    }
+    #passwordCloseImg {
+        height: 15px;
+        transition: 0.1s;
+        transform: scale(1);
+        &:hover {
+            transform: scale(1.1);
+        }
+    }
+    
+    #promptButton {
+        margin-bottom: 20px;
+        width: 80px;
+        height: 20px;
+        border-radius: 5px;
+        background: lightgray;
+        transition: 0.1s;
+        border: 1px solid black;
+        &:hover {
+            background: #bababa;
+        }
+    }
+}
+
+.credential-display {
+    padding-right: calc(1.5em + 0.75rem);
+    background-repeat: no-repeat;
+    background-position: right calc(0.375em + 0.1875rem) center;
+    background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
+}

@@ -1,4 +1,5 @@
-import CryptoJS from "crypto-js"
+import AES from 'crypto-js/aes'
+import Utf8 from 'crypto-js/enc-utf8'
 
 export default {
     /**
@@ -6,8 +7,9 @@ export default {
      * @param key - The encryption key used to encrypt all the items in `data`
      * @returns Array of encrypted strings
      */
+    
     encrypt(data: string[], key: string): string[] {
-        return data.map((data) => CryptoJS.AES.encrypt(data, key).toString())
+        return data.map((data) => AES.encrypt(data, key).toString())
     },
     /**
      * @param data - String to be decrypted
@@ -15,7 +17,7 @@ export default {
      * @returns Decrypted string
      */
     decrypt(data: string, key: string): string {
-        return CryptoJS.AES.decrypt(data, key).toString(CryptoJS.enc.Utf8)
+        return AES.decrypt(data, key).toString(Utf8)
     },
     /**
      * @returns Randomly generated string of numbers and letters to encrypt and decrypt data

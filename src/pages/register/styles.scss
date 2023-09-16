@@ -1,0 +1,36 @@
+body {
+	overflow-x: scroll;
+}
+
+.register-div {
+	height: fit-content !important;
+	@media screen and (max-height: 555px) {
+		max-height: fit-content;
+		overflow-x: scroll;
+	}
+	@media screen and (max-width: 575px) {
+		.register-title {
+			margin-top: 1.25rem !important;
+		}
+		.already-signed-up {
+			margin-bottom: 1.25rem !important;
+		}
+	}
+}
+
+.col-sm-8 {
+	max-width: 410px;
+}
+.col-md-6 {
+	max-width: 450px;
+}
+.col-lg-4 {
+	min-width: 365px;
+}
+
+.form-control.is-valid:focus,
+.was-validated :valid.form-control {
+	border-color: inherit !important;
+	background-image: inherit !important;
+	box-shadow: inherit !important;
+}
