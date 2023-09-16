@@ -1,5 +1,17 @@
 const path = require("path")
-const { readdirSync: readdir } = require("fs")
+
+const HTMLFile = (htmlWebpackPlugin) => `<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>${htmlWebpackPlugin.options.title}</title>
+</head>
+<body>
+    <div id="root"></div>
+</body>
+</html>
+`
 
 //Plugins
 const HTMLPlugin = require("html-webpack-plugin")
@@ -8,7 +20,6 @@ const CopyPlugin = require("copy-webpack-plugin")
 const TSConfigPathsPlugin = require("tsconfig-paths-webpack-plugin")
 
 module.exports = {
-    
     mode: "development",
 
     resolve: {
@@ -17,10 +28,7 @@ module.exports = {
     },
 
     entry: {
-        index: ["./src/app/index", "./src/ts/index"],
-        profile: ["./src/app/profile", "./src/ts/profile"],
-        projects: ["./src/app/projects", "./src/ts/projects"],
-        register: ["./src/app/register", "./src/ts/register"],
+        index: "./src/index",
     },
     //Output files to a dist folder
     output: {
@@ -52,19 +60,28 @@ module.exports = {
     },
 
     plugins: [
-        //Add HTML files
-        ...readdir("./src/pages")
-            .filter((file) => !file.includes("Icon"))
-            .map((file) => file.split(".")[0])
-            .map(
-                (file) =>
-                    new HTMLPlugin({
-                        template: `./src/pages/${file}.html`,
-                        inject: true,
-                        chunks: [file],
-                        filename: `${file}.html`,
-                    })
-            ),
+        //HTML Plugins
+        new HTMLPlugin({
+            title: "Home",
+            filename: "index.html",
+            templateContent: ({ htmlWebpackPlugin }) => HTMLFile(htmlWebpackPlugin),
+        }),
+        new HTMLPlugin({
+            title: "Profile",
+            filename: "profile.html",
+            templateContent: ({ htmlWebpackPlugin }) => HTMLFile(htmlWebpackPlugin),
+        }),
+        new HTMLPlugin({
+            title: "Projects",
+            filename: "projects.html",
+            templateContent: ({ htmlWebpackPlugin }) => HTMLFile(htmlWebpackPlugin),
+        }),
+        new HTMLPlugin({
+            title: "Register",
+            filename: "register.html",
+            templateContent: ({ htmlWebpackPlugin }) => HTMLFile(htmlWebpackPlugin),
+        }),
+
         //Copy images and icons
         new CopyPlugin({
             patterns: [
