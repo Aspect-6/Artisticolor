@@ -1,5 +1,5 @@
 {
-  "name": "artisticolor-react",
+  "name": "artisticolor",
   "version": "1.0.0",
   "scripts": {
     "start": "concurrently \"npm:dev\" \"npm:watch\"",
@@ -11,7 +11,7 @@
     "watch": [
       "./src"
     ],
-    "ext": "html js ts tsx d.ts scss",
+    "ext": "html ts tsx d.ts scss",
     "exec": "npm run build && clear"
   },
   "bugs": {
@@ -45,7 +45,7 @@
     "@firebase/auth": "^0.23.2",
     "@firebase/database": "^0.14.4",
     "@firebase/firestore": "^4.1.0",
-    "@types/crypto-js": "^4.1.1",
+    "@types/crypto-js": "^4.1.2",
     "@types/react": "^18.2.9",
     "@types/react-dom": "^18.2.4",
     "bootstrap": "^5.3.0",
@@ -75,7 +75,7 @@
     "webpack": "^5.84.1",
     "webpack-cli": "^5.0.2"
   },
-  "main": "webpack.config.js",
+  "main": "./src/index.tsx",
   "keywords": [],
   "author": "",
   "license": "ISC",
