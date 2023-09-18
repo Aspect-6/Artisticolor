@@ -1,37 +1,28 @@
-import { ReducerPayloadType, StateType } from "@pages/profile/models"
-import { useState } from "react"
+import { ActionTypes, StateType } from "@pages/profile/models"
+import ConfirmPasswordModal from "./modals/confirm-password-modal"
 import EmailModal from "./modals/email-modal"
 import PasswordModal from "./modals/password-modal"
 import UsernameModal from "./modals/username-modal"
 
 interface ModalManager {
     credentials: StateType
-    dispatch: React.Dispatch<ReducerPayloadType>
+    dispatch: (type: ActionTypes, value: string) => void
 }
 
 export default function ModalManager({ credentials, dispatch }: ModalManager) {
-    const { email, username, password, confirmPassword } = credentials
-
-    // const [passwordModalVisible, setPasswordModalVisible] =
-    //     useState<boolean>(false)
-    // console.log("render")
-
-    const [visible, setVisible] = useState(false)
+    const modalProps = (type: keyof typeof credentials) => {
+        return {
+            value: credentials[type],
+            dispatch: dispatch,
+        }
+    }
 
     return (
         <>
-            <EmailModal value={email} dispatch={dispatch} />
-            <UsernameModal value={username} dispatch={dispatch} />
-            {console.log("text-render")}
-            <PasswordModal
-                value={password}
-                confirmPassword={confirmPassword}
-                dispatch={dispatch}
-            />
-            {/* <ConfirmPasswordModal
-                value={confirmPassword}
-                dispatch={dispatch}
-            /> */}
+            <EmailModal {...modalProps("email")} />
+            <UsernameModal {...modalProps("username")} />
+            <PasswordModal {...modalProps("password")} />
+            <ConfirmPasswordModal {...modalProps("confirmPassword")} />
         </>
     )
 }

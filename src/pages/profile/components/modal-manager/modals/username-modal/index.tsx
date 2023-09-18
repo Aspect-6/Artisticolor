@@ -1,6 +1,5 @@
 import Modal from "@components/modal"
 import { ModalProps } from "@pages/profile/models"
-import { ACTIONS } from "../../reducer"
 
 export default function UsernameModal({ value, dispatch }: ModalProps) {
     return (
@@ -15,18 +14,13 @@ export default function UsernameModal({ value, dispatch }: ModalProps) {
                 className='modal-title fs-5 text-dark'
                 id='modal-label'
             >
-                Change username
+                <Modal.Title>Change username</Modal.Title>
             </Modal.Header>
             <Modal.Body>
                 <input
                     type='text'
                     value={value}
-                    onChange={(e) =>
-                        dispatch({
-                            type: ACTIONS.updatePassword,
-                            payload: e.target.value,
-                        })
-                    }
+                    onChange={(e) => dispatch("updateUsername", e.target.value)}
                     className='form-control'
                 />
             </Modal.Body>

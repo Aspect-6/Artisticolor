@@ -28,5 +28,5 @@ export interface ReducerPayloadType {
 
 export interface ModalProps extends React.HTMLAttributes<HTMLDivElement> {
     value: string
-    dispatch: React.Dispatch<ReducerPayloadType>
+    dispatch: (type: ActionTypes, value: string) => void
 }

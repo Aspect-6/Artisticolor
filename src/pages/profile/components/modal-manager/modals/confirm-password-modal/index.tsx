@@ -5,19 +5,15 @@ import { db } from "@lib/functions/firebase"
 import user from "@lib/functions/user"
 import { ModalProps } from "@pages/profile/models"
 import { useEffect, useRef, useState } from "react"
-import { ACTIONS } from "../../reducer"
 
-interface ConfirmPasswordModalProps extends ModalProps {
-    setPasswordModalVisible: React.Dispatch<React.SetStateAction<boolean>>
-}
-
-export default function ConfirmPasswordModal({
-    value,
-    dispatch,
-    setPasswordModalVisible,
-}: ConfirmPasswordModalProps) {
+export default function ConfirmPasswordModal({ value, dispatch }: ModalProps) {
     const inputRef = useRef<HTMLInputElement>()
     const buttonRef = useRef<HTMLButtonElement>()
+
+    const [modalDismissible, setModalDismissible] = useState("")
+    if (modalDismissible === "modal") {
+        buttonRef.current.click()
+    }
 
     const [uid, setUid] = useState("")
     const Uid = useUID()
@@ -42,8 +38,7 @@ export default function ConfirmPasswordModal({
                     if (inputRef.current.classList.contains("is-invalid")) {
                         inputRef.current.classList.remove("is-invalid")
                     }
-                    setPasswordModalVisible(true)
-                    // buttonRef.current.click()
+                    setModalDismissible("modal")
                 }
             })
         }
@@ -61,19 +56,18 @@ export default function ConfirmPasswordModal({
                 className='modal-title fs-5 text-dark'
                 id='modal-label'
             >
-                Confirm your identity by entering your password
+                <Modal.Title>
+                    Confirm your identity by entering your password
+                </Modal.Title>
             </Modal.Header>
             <Modal.Body>
                 <input
                     type='password'
                     ref={inputRef}
                     value={value}
-                    onChange={(e) =>
-                        dispatch({
-                            type: ACTIONS.confirmPassword,
-                            payload: e.target.value,
-                        })
-                    }
+                    onChange={(e) => {
+                        dispatch("confirmPassword", e.target.value)
+                    }}
                     className='form-control'
                 />
                 <div className='invalid-feedback'>
@@ -93,7 +87,7 @@ export default function ConfirmPasswordModal({
                     ref={buttonRef}
                     onClick={handleClick}
                     className='btn btn-primary'
-                    data-bs-toggle='modal'
+                    data-bs-toggle={modalDismissible}
                     data-bs-target='#changePassword'
                 >
                     Confirm

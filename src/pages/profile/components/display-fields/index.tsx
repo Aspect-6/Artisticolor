@@ -1,7 +1,7 @@
 import Form from "@components/form"
 import EditBtn from "../edit-btn"
 
-interface displayCredentialProps {
+interface displayCredentialProps extends React.HTMLAttributes<HTMLDivElement> {
     label: "Email" | "Username" | "Password"
     credential: string
 }
@@ -9,10 +9,12 @@ interface displayCredentialProps {
 export default function DisplayCredential({
     label,
     credential,
+    ...props
 }: displayCredentialProps) {
     const labelToLower = label.toLowerCase()
+
     return (
-        <Form.Field className='d-flex align-items-center'>
+        <Form.Field {...props}>
             <div className='col-3'>
                 <Form.FieldLabel className='align-content-center'>
                     {label}
@@ -20,7 +22,7 @@ export default function DisplayCredential({
             </div>
             <div className='col-9 justify-content-end d-flex'>
                 <Form.FieldInput
-                    type='email'
+                    type={label === "Username" ? "text" : labelToLower}
                     value={credential}
                     className='mx-2 credential-display'
                     style={{
@@ -33,7 +35,11 @@ export default function DisplayCredential({
                     className='btn btn-primary'
                     style={{ minWidth: "fit-content" }}
                     data-bs-toggle='modal'
-                    data-bs-target={`#change${labelToLower}`}
+                    data-bs-target={
+                        label !== "Password"
+                            ? `#change${label}`
+                            : `#confirmPassword`
+                    }
                 />
             </div>
         </Form.Field>
