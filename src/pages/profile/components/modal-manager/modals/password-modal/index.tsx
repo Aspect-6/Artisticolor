@@ -16,7 +16,6 @@ import { useContext, useEffect, useRef, useState } from "react"
 export default function PasswordModal({
     value,
     dispatch,
-    Ref,
 }: ModalProps<HTMLDivElement, HTMLDivElement>) {
     const inputRef = useRef<HTMLInputElement>()
     const buttonRef = useRef<HTMLButtonElement>()
@@ -81,7 +80,6 @@ export default function PasswordModal({
             tabIndex={-1}
             aria-labelledby='modal-label'
             aria-hidden='true'
-            Ref={Ref}
         >
             <Modal.Header
                 className='modal-title fs-5 text-dark'
