@@ -1,4 +1,4 @@
-import { UserCredential } from "@firebase/auth"
+import { UserCredential } from "@lib/functions/auth";
 
 interface testFormErrorProps {
     e: UserCredential | string
