@@ -1,8 +1,13 @@
 import { ROUTES } from "@config/browser-routes.config"
 import {
+    EmailAuthProvider,
+    User,
     signOut as _signOut,
     createUserWithEmailAndPassword,
+    reauthenticateWithCredential,
     signInWithEmailAndPassword,
+    updateEmail,
+    updatePassword,
     updateProfile,
 } from "./auth"
 import Crypto from "./crypto"
@@ -68,6 +73,7 @@ export default {
             })
     },
     /**
+     *
      * Sign in user with inputted email and password
      * @param email - Email submitted by user in an attempt to sign in
      * @param password - Password submitted by user in an attempt to sign in
@@ -83,6 +89,7 @@ export default {
         _signOut(auth).then(() => (location.href = ROUTES.INDEX))
     },
     /**
+     *
      * @param userDoc - Firestore user document reference path constructed of Users/uid
      * @param fields - All keys of the `FirestoreUser` interface allowed to be decrypted with `Crypto.decrypt()`
      * @returns Promise containing array of objects with the decrypted values of the keys passed in
@@ -94,10 +101,42 @@ export default {
         const data = <FirestoreUser>(
             await getDoc(userDoc).then((user) => user.data())
         )
-        const returnData: Partial<{[key in FirestoreUserValidKeys]: string}> = {}
+        const returnData: Partial<
+            Record<
+                FirestoreUserValidKeys,
+                FirestoreUser[FirestoreUserValidKeys]
+            >
+        > = {}
         fields.map((field) => {
             returnData[field] = Crypto.decrypt(data[field], data.key)
         })
         return returnData
+    },
+
+    /**
+     * Updates the password of the current user and then returns the new user object
+     * @param email - The email of the current user
+     * @param password - The password of the current user
+     * @returns {Promise<User>} Promise containing the new current user object
+     */
+    async reauthenticateUser(email: string, password: string): Promise<User> {
+        const credentials = EmailAuthProvider.credential(email, password)
+        return (
+            await reauthenticateWithCredential(auth.currentUser, credentials)
+        ).user
+    },
+    /**
+     * Updates user's email
+     * @param newEmail - The new email submitted by user in an attempt to update their email
+     */
+    async updateUserEmail(newEmail: string) {
+        updateEmail(auth.currentUser, newEmail)
+    },
+    /**
+     * Updates user's password
+     * @param newPassword - The new password submitted by user in an attempt to update their password
+     */
+    async updateUserPassword(newPassword: string) {
+        updatePassword(auth.currentUser, newPassword)
     },
 }

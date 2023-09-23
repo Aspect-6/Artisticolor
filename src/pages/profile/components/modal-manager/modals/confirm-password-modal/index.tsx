@@ -1,49 +1,56 @@
 import Modal from "@components/modal"
-import { doc } from "@firebase/firestore/lite"
-import useUID from "@hooks/useUID"
-import { db } from "@lib/functions/firebase"
+import { UserContext } from "@contexts/userContext"
+import { User } from "@lib/functions/auth"
+import { auth } from "@lib/functions/firebase"
 import user from "@lib/functions/user"
 import { ModalProps } from "@pages/profile/models"
-import { useEffect, useRef, useState } from "react"
+import {
+    hideBoostrapInputError,
+    showBoostrapInputError,
+} from "@pages/profile/utils"
+import { useContext, useEffect, useRef, useState } from "react"
 
-export default function ConfirmPasswordModal({ value, dispatch }: ModalProps) {
+export default function ConfirmPasswordModal({
+    value,
+    dispatch,
+}: ModalProps<HTMLDivElement, HTMLInputElement>) {
+    console.log("rendering confirm password modal")
+
+    const [currentUser, setCurrentUser] = useState<User>()
+    const userContext = useContext(UserContext)
+    useEffect(() => {
+        setCurrentUser(userContext)
+    }, [userContext])
+
     const inputRef = useRef<HTMLInputElement>()
     const buttonRef = useRef<HTMLButtonElement>()
-
+    const invalidDivRef = useRef<HTMLDivElement>()
     const [modalDismissible, setModalDismissible] = useState("")
+
     if (modalDismissible === "modal") {
+        console.count("modal dismissible")
         buttonRef.current.click()
     }
 
-    const [uid, setUid] = useState("")
-    const Uid = useUID()
-
-    useEffect(() => {
-        setUid(Uid)
-    }, [Uid])
-
     const handleClick = () => {
-        if (uid) {
-            const userDoc = doc(db, `Users/${uid}`)
-            const fields: FirestoreUserValidKeys[] = ["password"]
-
-            user.decryptCredentials(userDoc, fields).then(({ password }) => {
-                if (inputRef.current.value !== password) {
-                    if (inputRef.current.classList.contains("is-valid")) {
-                        inputRef.current.classList.remove("is-valid")
+        if (currentUser.uid) {
+            user.reauthenticateUser(
+                auth.currentUser.email,
+                inputRef.current.value
+            )
+                .then(() => setModalDismissible("modal"))
+                .catch((e) => {
+                    if (e.code === "auth/wrong-password") {
+                        showBoostrapInputError(
+                            inputRef,
+                            invalidDivRef,
+                            "Incorrect password. Please try again."
+                        )
                     }
-                    inputRef.current.classList.add("is-invalid")
-                }
-                if (inputRef.current.value === password) {
-                    if (inputRef.current.classList.contains("is-invalid")) {
-                        inputRef.current.classList.remove("is-invalid")
-                    }
-                    setModalDismissible("modal")
-                }
-            })
+                })
+            hideBoostrapInputError(inputRef)
         }
     }
-
     return (
         <Modal
             className='modal fade'
@@ -70,9 +77,7 @@ export default function ConfirmPasswordModal({ value, dispatch }: ModalProps) {
                     }}
                     className='form-control'
                 />
-                <div className='invalid-feedback'>
-                    Incorrect password. Please try again.
-                </div>
+                <div className='invalid-feedback' ref={invalidDivRef}></div>
             </Modal.Body>
             <Modal.Footer>
                 <button
@@ -85,7 +90,12 @@ export default function ConfirmPasswordModal({ value, dispatch }: ModalProps) {
                 <button
                     type='button'
                     ref={buttonRef}
-                    onClick={handleClick}
+                    onClick={() => {
+                        console.count("Calling handleClick")
+                        if (modalDismissible !== "modal") {
+                            handleClick()
+                        }
+                    }}
                     className='btn btn-primary'
                     data-bs-toggle={modalDismissible}
                     data-bs-target='#changePassword'

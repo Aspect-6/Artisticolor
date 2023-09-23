@@ -1,8 +1,9 @@
-import useUID from "@hooks/useUID"
+import { UserContext } from "@contexts/userContext"
+import { User } from "@lib/functions/auth"
 import { db } from "@lib/functions/firebase"
 import { doc } from "@lib/functions/firestore"
 import user from "@lib/functions/user"
-import { useEffect, useReducer } from "react"
+import { useContext, useEffect, useReducer, useRef, useState } from "react"
 import { ActionTypes, StateType } from "../models"
 import DisplayCredential from "./display-fields"
 import ModalManager from "./modal-manager"
@@ -22,24 +23,37 @@ export default function ProfileBox({}: ProfileBox) {
         dispatch({ type: ACTIONS[type], payload: value })
     }
 
-    const uid = useUID()
+    const [currentUser, setCurrentUser] = useState<User>()
+    const userContext = useContext(UserContext)
+    useEffect(() => {
+        setCurrentUser(userContext)
+    }, [userContext])
 
     useEffect(() => {
-        if (uid) {
-            const userDoc = doc(db, `Users/${uid}`)
-            user.decryptCredentials(userDoc, [
+        if (currentUser?.uid) {
+            const userDoc = doc(db, `Users/${currentUser.uid}`)
+            const fields: FirestoreUserValidKeys[] = [
                 "email",
                 "username",
                 "password",
-            ]).then((data) => {
+            ]
+
+            user.decryptCredentials(userDoc, fields).then((data) => {
                 dispatch({ type: ACTIONS.setData, payload: data as StateType })
             })
         }
-    }, [uid])
+    }, [currentUser])
 
     return (
         <>
-            <ModalManager credentials={credentials} dispatch={credDispatch} />
+            <ModalManager
+                credentials={credentials}
+                dispatch={credDispatch}
+                ModalRefs={{
+                    password: useRef<HTMLInputElement>(),
+                    confirmPassword: useRef<HTMLInputElement>(),
+                }}
+            />
             <div className='position-absolute top-50 start-50 translate-middle col-9 col-md-7 col-lg-5 col-xl-4 p-3 bg-dark-subtle h-75 rounded'>
                 <DisplayCredential
                     label='Email'

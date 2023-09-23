@@ -1,7 +1,7 @@
 import Modal from "@components/modal"
 import { ModalProps } from "@pages/profile/models"
 
-export default function ChangeEmail({ value, dispatch }: ModalProps) {
+export default function ChangeEmail({ value, dispatch, Ref }: ModalProps) {
     return (
         <Modal
             className='modal fade'
