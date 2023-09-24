@@ -10,10 +10,10 @@ export default function LoginDropdown({}: LoginDropdownProps) {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
 
-    const emailRef: React.MutableRefObject<HTMLInputElement> = useRef()
-    const passwordRef: React.MutableRefObject<HTMLInputElement> = useRef()
-    const formRef: React.MutableRefObject<HTMLFormElement> = useRef()
-    const errorRef: React.MutableRefObject<HTMLDivElement> = useRef()
+    const emailRef = useRef<HTMLInputElement>()
+    const passwordRef = useRef<HTMLInputElement>()
+    const formRef = useRef<HTMLFormElement>()
+    const errorRef = useRef<HTMLDivElement>()
 
     const handleSubmit = () => {
         formRef.current.classList.add("was-validated")
