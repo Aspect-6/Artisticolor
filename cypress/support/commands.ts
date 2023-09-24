@@ -35,3 +35,15 @@
 //     }
 //   }
 // }
+
+Cypress.Commands.add("login", (email: string, password: string) => {
+    cy.contains('Login').click()
+    cy.get('#formEmail').type(email)
+    cy.get('#formPassword').type(password)
+    cy.contains('Sign In').click()
+})
+
+Cypress.Commands.add("logout", () => {
+    cy.get('.px-1 > .nav-link').click()
+    cy.contains('Sign Out').click()
+})
