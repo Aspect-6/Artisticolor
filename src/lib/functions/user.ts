@@ -130,13 +130,13 @@ export default {
      * @param newEmail - The new email submitted by user in an attempt to update their email
      */
     async updateUserEmail(newEmail: string) {
-        updateEmail(auth.currentUser, newEmail)
+        return updateEmail(auth.currentUser, newEmail)
     },
     /**
      * Updates user's password
      * @param newPassword - The new password submitted by user in an attempt to update their password
      */
     async updateUserPassword(newPassword: string) {
-        updatePassword(auth.currentUser, newPassword)
+        return updatePassword(auth.currentUser, newPassword)
     },
 }
