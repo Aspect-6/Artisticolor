@@ -10,12 +10,12 @@ import {
 } from "@pages/profile/utils"
 import { useContext, useEffect, useRef, useState } from "react"
 
-export default function ConfirmPasswordModal({
+export default function ConfirmModal({
     value,
     dispatch,
-}: ModalProps<HTMLDivElement, HTMLInputElement>) {
-    console.log("rendering confirm password modal")
-
+    target,
+    ...props
+}: ModalProps & { target: string }) {
     const [currentUser, setCurrentUser] = useState<User>()
     const userContext = useContext(UserContext)
     useEffect(() => {
@@ -28,7 +28,6 @@ export default function ConfirmPasswordModal({
     const [modalDismissible, setModalDismissible] = useState("")
 
     if (modalDismissible === "modal") {
-        console.count("modal dismissible")
         buttonRef.current.click()
     }
 
@@ -54,10 +53,10 @@ export default function ConfirmPasswordModal({
     return (
         <Modal
             className='modal fade'
-            id='confirmPassword'
             tabIndex={-1}
             aria-labelledby='modal-label'
             aria-hidden='true'
+            {...props}
         >
             <Modal.Header
                 className='modal-title fs-5 text-dark'
@@ -73,7 +72,7 @@ export default function ConfirmPasswordModal({
                     ref={inputRef}
                     value={value}
                     onChange={(e) => {
-                        dispatch("confirmPassword", e.target.value)
+                        dispatch("confirmText", e.target.value)
                     }}
                     className='form-control'
                 />
@@ -91,14 +90,13 @@ export default function ConfirmPasswordModal({
                     type='button'
                     ref={buttonRef}
                     onClick={() => {
-                        console.count("Calling handleClick")
                         if (modalDismissible !== "modal") {
                             handleClick()
                         }
                     }}
                     className='btn btn-primary'
                     data-bs-toggle={modalDismissible}
-                    data-bs-target='#changePassword'
+                    data-bs-target={target}
                 >
                     Confirm
                 </button>
