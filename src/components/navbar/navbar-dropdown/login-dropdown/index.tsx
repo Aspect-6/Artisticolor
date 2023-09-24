@@ -1,7 +1,6 @@
 import Form, { testFormError } from "@components/form"
 import user from "@lib/functions/user"
 import { useRef, useState } from "react"
-// import { Link } from "react-router-dom"
 import Divider from "../../../divider"
 
 interface LoginDropdownProps {}
@@ -10,10 +9,10 @@ export default function LoginDropdown({}: LoginDropdownProps) {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
 
-    const emailRef: React.MutableRefObject<HTMLInputElement> = useRef()
-    const passwordRef: React.MutableRefObject<HTMLInputElement> = useRef()
-    const formRef: React.MutableRefObject<HTMLFormElement> = useRef()
-    const errorRef: React.MutableRefObject<HTMLDivElement> = useRef()
+    const emailRef = useRef<HTMLInputElement>()
+    const passwordRef = useRef<HTMLInputElement>()
+    const formRef = useRef<HTMLFormElement>()
+    const errorRef = useRef<HTMLDivElement>()
 
     const handleSubmit = () => {
         formRef.current.classList.add("was-validated")
