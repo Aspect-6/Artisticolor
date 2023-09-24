@@ -8,7 +8,7 @@ export const ACTIONS: Record<ActionTypes, ActionTypes> = {
     updateEmail: "updateEmail",
     updateUsername: "updateUsername",
     updatePassword: "updatePassword",
-    confirmPassword: "confirmPassword",
+    confirmText: "confirmText",
     setData: "setData",
 }
 
@@ -38,10 +38,10 @@ export function credReducer(
                 ...state,
                 password: action.payload as string,
             }
-        case ACTIONS.confirmPassword:
+        case ACTIONS.confirmText:
             return {
                 ...state,
-                confirmPassword: action.payload as string,
+                confirmText: action.payload as string,
             }
         case ACTIONS.setData:
             return {

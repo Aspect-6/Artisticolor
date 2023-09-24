@@ -99,18 +99,15 @@ export default function PasswordModal({
             </Modal.Body>
             <Modal.Footer>
                 <button
-                    type='button' // Get rid of this
                     className='btn btn-secondary'
                     data-bs-dismiss='modal'
                 >
                     Close
                 </button>
                 <button
-                    type='button' // Get rid of this
                     ref={buttonRef}
                     onClick={handleClick}
                     className='btn btn-primary'
-                    data-bs-dismiss=''
                 >
                     Save changes
                 </button>

@@ -5,7 +5,7 @@ export type ActionTypes =
     | "updateEmail"
     | "updateUsername"
     | "updatePassword"
-    | "confirmPassword"
+    | "confirmText"
     | "setData"
 
 /**
@@ -15,7 +15,7 @@ export interface StateType {
     email: string
     username: string
     password: string
-    confirmPassword: string
+    confirmText: string
 }
 
 /**

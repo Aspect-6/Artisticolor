@@ -36,9 +36,9 @@ export default function DisplayCredential({
                     style={{ minWidth: "fit-content" }}
                     data-bs-toggle='modal'
                     data-bs-target={
-                        label !== "Password"
+                        label !== "Password" && label !== "Email"
                             ? `#change${label}`
-                            : `#confirmPassword`
+                            : `#confirm${label}`
                     }
                 />
             </div>

@@ -16,7 +16,7 @@ export default function ProfileBox({}: ProfileBox) {
         email: "",
         username: "",
         password: "",
-        confirmPassword: "",
+        confirmText: "",
     })
 
     const credDispatch = (type: ActionTypes, value: string) => {
@@ -49,10 +49,6 @@ export default function ProfileBox({}: ProfileBox) {
             <ModalManager
                 credentials={credentials}
                 dispatch={credDispatch}
-                ModalRefs={{
-                    password: useRef<HTMLInputElement>(),
-                    confirmPassword: useRef<HTMLInputElement>(),
-                }}
             />
             <div className='position-absolute top-50 start-50 translate-middle col-9 col-md-7 col-lg-5 col-xl-4 p-3 bg-dark-subtle h-75 rounded'>
                 <DisplayCredential
